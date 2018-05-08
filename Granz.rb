@@ -5,7 +5,8 @@ require 'cleverbot'
 #Change these to whatever you want
 $prefix = "Your desired prefix"
 $version = "Your desired version"
-$bot_name = "Bot's Name and tag"
+$bot_name = "Your bot's Name"
+$bot_tag = "Your bot's tag"
 #Change these to their values
 $token = "Your Bot's token"
 $client_id = "Your Bot's ID"
@@ -21,13 +22,13 @@ $bot.command :help do |event|
 	  embed.title = "You called for help , here I am !!!"
 	  embed.colour = 0xffff00
 
-	  embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
+	  embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
 	  embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "『Geop』#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
 
 	  embed.add_field(name: "Commands", value: "All Commands")
 	  embed.add_field(name: "#{$prefix}help", value: "Responds with this")
 	  embed.add_field(name: "#{$prefix}info", value: "Responds with info")
-		embed.add_field(name: "@#{$bot_name}", value: "Cleverbot with it")
+		embed.add_field(name: "@#{$bot_name}#{$bot_tag}", value: "Cleverbot with it")
 		embed.add_field(name: "#{$prefix}avatar <mention>", value: "Responds with the avatar of the mentioned user")
 		embed.add_field(name: "#{$prefix}cookie", value: "Responds with a cookie emoji")
 		embed.add_field(name: "#{$prefix}hug <mention>", value: "Hugs mentioned user")
@@ -35,6 +36,8 @@ $bot.command :help do |event|
 		embed.add_field(name: "#{$prefix}lmgtfy", value: "Google's something for you")
 		embed.add_field(name: "#{$prefix}noticeme", value: "Notices you")
 		embed.add_field(name: "#{$prefix}ping", value: "Responds with Pong!")
+		embed.add_field(name: "#{$prefix}rate <something>", value: "Rates Something")
+		embed.add_field(name: "#{$prefix}reverse <something>", value: "Responds with the reversed version of something")
 		embed.add_field(name: "#{$prefix}shoot <mention>", value: "Shoots mentioned user")
 		embed.add_field(name: "#{$prefix}uptime", value: "Responds with bot's uptime")
 		embed.add_field(name: "#{$prefix}yesno", value: "Responds with yes or no to a question")
@@ -46,7 +49,7 @@ $bot.command :info do |event|
 	  embed.title = "Some Info"
 	  embed.colour = 0xffff00
 
-	  embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
+	  embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
 	  embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "『Geop』#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
 
 	  embed.add_field(name: "Name & Avatar", value: "Granz is a character made by Mentaiko")
@@ -153,6 +156,29 @@ $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
 			user = user[1..-1]
 			mentioned_user = $bot.user(user);
 			event.respond "#{mentioned_user.mention}, shot #{event.user.mention} :gun:"
+		end
+	end
+end
+
+$bot.command :rate, min_args: 1, max_args: 1 do |event, rating|
+	arr = ["0","1","2","3","4","5","6","7","8","9","10"]
+    event.respond "I give #{rating} a #{arr.sample}/10 ~#{$bot_name}"
+  end
+  
+$bot.command :reverse,  min_args: 1 do |event, *args|
+	args.join(' ').reverse
+end
+
+$bot.command :id, min_args: 1, max_args: 1 do |event, user|
+	user = user[2..-2]
+	begin
+		mentioned_user = $bot.user(user);
+		event.respond "`#{mentioned_user.mention}`"
+	rescue
+		begin
+			user = user[1..-1]
+			mentioned_user = $bot.user(user);
+			event.respond "`#{mentioned_user.mention}`"
 		end
 	end
 end
