@@ -7,11 +7,7 @@ This started as a project to understand ruby while learning it
 # Invite it
 https://discordapp.com/oauth2/authorize?client_id=443053627419000833&scope=bot&permissions=103894080
 # Commands
-- Cleverbot
-- Useful Commands
-- Fun Commands
-- Moderation Commands
-- And More
+![alt text}(https://i.imgur.com/0x9leot.png)
 # How to set it up
 - Install ruby on your OS
 - Install Gems
