@@ -32,6 +32,7 @@ $bot.command :help do |event|
 		embed.add_field(name: "#{$prefix}avatar <mention>", value: "Responds with the avatar of the mentioned user")
 		embed.add_field(name: "#{$prefix}cookie", value: "Responds with a cookie emoji")
 		embed.add_field(name: "#{$prefix}hug <mention>", value: "Hugs mentioned user")
+		embed.add_field(name: "#{$prefix}id <mention>", value: "Responds with the id of the mentioned user")
 		embed.add_field(name: "#{$prefix}kiss <mention>", value: "Kisses mentioned user")
 		embed.add_field(name: "#{$prefix}lmgtfy", value: "Google's something for you")
 		embed.add_field(name: "#{$prefix}noticeme", value: "Notices you")
