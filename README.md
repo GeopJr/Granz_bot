@@ -22,7 +22,8 @@ https://discordapp.com/oauth2/authorize?client_id=443053627419000833&scope=bot&p
 ```
 $prefix = "Your desired prefix"
 $version = "Your desired version"
-$bot_name = "Bot's Name and tag"
+$bot_name = "Your bot's Name"
+$bot_tag = "Your bot's tag
 ```
 - Replace Important values with yours
 ```
