@@ -73,7 +73,7 @@ $bot.message(containing: '(╯°□°）╯︵ ┻━┻') do |event|
 end
 
 $bot.message do |event|
-  if event.message.content.include?("<@#{$bot.profile.id}>") || event.message.content.include?("<@#{$bot.profile.id}>")
+  if event.message.content.start_with?("<@#{$bot.profile.id}>") || event.message.content.start_with?("<@#{$bot.profile.id}>")
     event.channel.start_typing
     event.respond(talk.say(event.message.content.gsub("<@#{$bot.profile.id}>", '').gsub("<@!#{$bot.profile.id}>", '')))
   end
