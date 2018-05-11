@@ -2,6 +2,7 @@
 A Discord Bot written in ruby using discordrb
 
 ![alt text](https://i.imgur.com/cSz9Ckv.jpg)
+
 [![Discord Bots](https://discordbots.org/api/widget/status/443053627419000833.svg)](https://discordbots.org/bot/443053627419000833)
 [![Discord Bots](https://discordbots.org/api/widget/lib/443053627419000833.svg)](https://discordbots.org/bot/443053627419000833)
 # About it
