@@ -31,6 +31,7 @@ $bot.command :help do |event|
 		embed.add_field(name: "@#{$bot_name}#{$bot_tag}", value: "Cleverbot with it")
 		embed.add_field(name: "#{$prefix}avatar <mention>", value: "Responds with the avatar of the mentioned user")
 		embed.add_field(name: "#{$prefix}cookie", value: "Responds with a cookie emoji")
+		embed.add_field(name: "#{$prefix}ddg", value: "Searches something using duckduckgo for you")
 		embed.add_field(name: "#{$prefix}hug <mention>", value: "Hugs mentioned user")
 		embed.add_field(name: "#{$prefix}id <mention>", value: "Responds with the id of the mentioned user")
 		embed.add_field(name: "#{$prefix}kiss <mention>", value: "Kisses mentioned user")
@@ -86,6 +87,10 @@ end
 
 $bot.command :lmgtfy do |event, *args|
 	event.respond "#{event.user.mention}, <http://lmgtfy.com/?q=%s>" % [args.join("+")]
+end
+
+$bot.command :ddg do |event, *args|
+	event.respond "#{event.user.mention}, <http://duckduckgo.com/%s?ia=web>" % [args.join("%20")]
 end
 
 $bot.command :avatar, min_args: 1, max_args: 1 do |event, user|
