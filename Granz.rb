@@ -154,7 +154,10 @@ $bot.command :noticeme do |event|
 end
 
 $bot.command :blush do |event|
-			event.channel.send_file(File.open('blush.png', 'r'))
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://i.imgur.com/fIY6c7d.png")
+	end
 end
 
 $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
