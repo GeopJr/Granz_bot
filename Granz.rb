@@ -30,7 +30,8 @@ $bot.command :help do |event|
 	  embed.add_field(name: "#{$prefix}info", value: "Responds with info")
 		embed.add_field(name: "@#{$bot_name}#{$bot_tag}", value: "Cleverbot with it")
 		embed.add_field(name: "#{$prefix}avatar <mention>", value: "Responds with the avatar of the mentioned user")
-		embed.add_field(name: "#{$prefix}cookie", value: "Responds with a cookie emoji")
+		embed.add_field(name: "#{$prefix}blush", value: "Blushes :blush:")
+		embed.add_field(name: "#{$prefix}cookie", value: "Responds with a :cookie:")
 		embed.add_field(name: "#{$prefix}ddg", value: "Searches something using duckduckgo for you")
 		embed.add_field(name: "#{$prefix}hug <mention>", value: "Hugs mentioned user")
 		embed.add_field(name: "#{$prefix}id <mention>", value: "Responds with the id of the mentioned user")
@@ -150,6 +151,10 @@ end
 
 $bot.command :noticeme do |event|
 			event.respond "#{event.user.mention}, I notice you :relaxed:"
+end
+
+$bot.command :blush do |event|
+			event.channel.send_file(File.open('blush.png', 'r'))
 end
 
 $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
