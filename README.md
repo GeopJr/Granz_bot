@@ -8,7 +8,7 @@ A Discord Bot written in ruby using discordrb
 # About it
 This started as a project to understand ruby while learning it
 # Invite it
-https://discordapp.com/oauth2/authorize?client_id=443053627419000833&scope=bot&permissions=103894080
+[CLICK HERE](https://discordapp.com/oauth2/authorize?client_id=443053627419000833&scope=bot&permissions=103894080&redirect_uri=https://granz.geopjr.de/thanks.html&response_type=code)
 # Commands
 ![alt text](https://raw.githubusercontent.com/GeopJr/Granz_website/master/granz_cmd.png)
 # How to set it up
