@@ -66,32 +66,51 @@ $bot.command :info do |event|
 end
 #Commands
 $bot.command :ping do |event|
-	m = event.respond('Pong!')
-	m.edit "Pong! Time : #{Time.now - event.timestamp} sec."
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.title = ":ping_pong: Pong! (#{Time.now - event.timestamp} sec.)"
+	end
 end
 #Replaces tableflip with put the damn table sown
 $bot.message(containing: '(╯°□°）╯︵ ┻━┻') do |event|
-	m =	event.respond ('┬─┬﻿ ノ( ゜-゜ノ)')
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.title = '┬─┬﻿ ノ( ゜-゜ノ)'
+	end
 end
 #Cleverbot
 $bot.message do |event|
   if event.message.content.start_with?("<@#{$bot.profile.id}>") || event.message.content.start_with?("<@#{$bot.profile.id}>")
-    event.channel.start_typing
-    event.respond(talk.say(event.message.content.gsub("<@#{$bot.profile.id}>", '').gsub("<@!#{$bot.profile.id}>", '')))
+   	event.channel.start_typing
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.title = talk.say(event.message.content.gsub("<@#{$bot.profile.id}>", '').gsub("<@!#{$bot.profile.id}>", ''))
+	end
   end
 end
 #Answers yes or no
-$bot.command :yesno do |event|
+$bot.command :yesno, min_args: 1 do |event|
 	arr = ["Yes.","No."]
-	event.respond(arr.sample)
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.title = "#{arr.sample}"
+	end
 end
 #Generates a let me google that for you link
 $bot.command :lmgtfy do |event, *args|
-	event.respond "#{event.user.mention}, <http://lmgtfy.com/?q=%s>" % [args.join("+")]
+event.respond "#{event.user.mention},"
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.title = "<http://lmgtfy.com/?q=%s>" % [args.join("+")]
+	end
 end
 #Generates a duckduckgo link
 $bot.command :ddg do |event, *args|
-	event.respond "#{event.user.mention}, <http://duckduckgo.com/%s?ia=web>" % [args.join("%20")]
+event.respond "#{event.user.mention},"
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.title = "<http://duckduckgo.com/%s?ia=web>" % [args.join("%20")]
+	end
 end
 #Responds with the avatar of the tagged user
 $bot.command :avatar, min_args: 1, max_args: 1 do |event, user|
@@ -182,29 +201,44 @@ end
 #Rates something
 $bot.command :rate, min_args: 1, max_args: 1 do |event, rating|
 	arr = ["0","1","2","3","4","5","6","7","8","9","10"]
-    event.respond "I give #{rating} a #{arr.sample}/10 ~#{$bot_name}"
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.title = "I give #{rating} a #{arr.sample}/10 ~#{$bot_name}"
+	end
   end
 #Reverses something
 $bot.command :reverse,  min_args: 1 do |event, *args|
-	args.join(' ').reverse
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.title = "#{args.join(' ').reverse}"
+	end
 end
 #Responds with the id of the tagged user
 $bot.command :id, min_args: 1, max_args: 1 do |event, user|
 	user = user[2..-2]
 	begin
 		mentioned_user = $bot.user(user);
-		event.respond "`#{mentioned_user.mention}`"
+			event.channel.send_embed do |embed|
+			embed.colour = 0xffff00
+			embed.title = "#{mentioned_user.mention}"
+	end
 	rescue
 		begin
 			user = user[1..-1]
 			mentioned_user = $bot.user(user);
-			event.respond "`#{mentioned_user.mention}`"
+			event.channel.send_embed do |embed|
+			embed.colour = 0xffff00
+			embed.title = "#{mentioned_user.mention}"
+			end
 		end
 	end
 end
 #Responses with a cookie
 $bot.command :cookie do |event|
-	event.respond ":cookie:"
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.title = ":cookie:"
+	end
 end
 
 #Playing Game
