@@ -16,7 +16,7 @@ $bot = Discordrb::Commands::CommandBot.new token: $token, client_id: $client_id,
 puts "Connected"
 #Used for cleverbot.io , change YOUR_API_USER and YOUR_API_KEY to theur values
 talk = Cleverbot.new('YOUR_API_USER', 'YOUR_API_KEY')
-#help command
+#Help Command
 $bot.command :help do |event|
 	event.channel.send_embed do |embed|
 	  embed.title = "You called for help , here I am !!!"
@@ -69,31 +69,31 @@ $bot.command :ping do |event|
 	m = event.respond('Pong!')
 	m.edit "Pong! Time : #{Time.now - event.timestamp} sec."
 end
-
+#Replaces tableflip with put the damn table sown
 $bot.message(containing: '(╯°□°）╯︵ ┻━┻') do |event|
 	m =	event.respond ('┬─┬﻿ ノ( ゜-゜ノ)')
 end
-
+#Cleverbot
 $bot.message do |event|
   if event.message.content.start_with?("<@#{$bot.profile.id}>") || event.message.content.start_with?("<@#{$bot.profile.id}>")
     event.channel.start_typing
     event.respond(talk.say(event.message.content.gsub("<@#{$bot.profile.id}>", '').gsub("<@!#{$bot.profile.id}>", '')))
   end
 end
-
+#Answers yes or no
 $bot.command :yesno do |event|
 	arr = ["Yes.","No."]
 	event.respond(arr.sample)
 end
-
+#Generates a let me google that for you link
 $bot.command :lmgtfy do |event, *args|
 	event.respond "#{event.user.mention}, <http://lmgtfy.com/?q=%s>" % [args.join("+")]
 end
-
+#Generates a duckduckgo link
 $bot.command :ddg do |event, *args|
 	event.respond "#{event.user.mention}, <http://duckduckgo.com/%s?ia=web>" % [args.join("%20")]
 end
-
+#Responds with the avatar of the tagged user
 $bot.command :avatar, min_args: 1, max_args: 1 do |event, user|
 user = user[2..-2]
 	begin
@@ -113,7 +113,7 @@ end
 		end
 	end
 end
-
+#Shows the uptime
 $bot.command :uptime do |event|
 	full_sec = Time.now - $uptimer
 	sec = full_sec % 60
@@ -126,7 +126,7 @@ $bot.command :uptime do |event|
 		embed.colour = 0xffff00
 	end
 end
-
+#Kisses tagged user
 $bot.command :kiss, min_args: 1, max_args: 1 do |event, user|
 	user = user[2..-2]
 	begin
@@ -140,7 +140,7 @@ $bot.command :kiss, min_args: 1, max_args: 1 do |event, user|
 		end
 	end
 end
-
+#Hugs tagged user
 $bot.command :hug, min_args: 1, max_args: 1 do |event, user|
 	user = user[2..-2]
 	begin
@@ -154,18 +154,18 @@ $bot.command :hug, min_args: 1, max_args: 1 do |event, user|
 		end
 	end
 end
-
+#Notices you
 $bot.command :noticeme do |event|
 			event.respond "#{event.user.mention}, I notice you :relaxed:"
 end
-
+#Blushes
 $bot.command :blush do |event|
 	event.channel.send_embed do |embed|
 	embed.colour = 0xffff00
 	embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://i.imgur.com/fIY6c7d.png")
 	end
 end
-
+#Shoots tagged user
 $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
 	user = user[2..-2]
 	begin
@@ -179,16 +179,16 @@ $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
 		end
 	end
 end
-
+#Rates something
 $bot.command :rate, min_args: 1, max_args: 1 do |event, rating|
 	arr = ["0","1","2","3","4","5","6","7","8","9","10"]
     event.respond "I give #{rating} a #{arr.sample}/10 ~#{$bot_name}"
   end
-  
+#Reverses something
 $bot.command :reverse,  min_args: 1 do |event, *args|
 	args.join(' ').reverse
 end
-
+#Responds with the id of the tagged user
 $bot.command :id, min_args: 1, max_args: 1 do |event, user|
 	user = user[2..-2]
 	begin
@@ -202,7 +202,7 @@ $bot.command :id, min_args: 1, max_args: 1 do |event, user|
 		end
 	end
 end
-
+#Responses with a cookie
 $bot.command :cookie do |event|
 	event.respond ":cookie:"
 end
