@@ -12,7 +12,7 @@ $bot_tag = "Your bot's tag"
 $token = "Your Bot's token"
 $client_id = "Your Bot's ID"
 #Don't change this
-$bot = Discordrb::Commands::CommandBot.new token: $token, client_id: $client_id, prefix: $prefix
+$bot = Discordrb::Commands::CommandBot.new token: $token, client_id: $client_id, prefix: $prefix, ignore_bots: true
 #Logs a message to your terminal
 puts "Connected"
 #Used for cleverbot.io , change YOUR_API_USER and YOUR_API_KEY to theur values
