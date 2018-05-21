@@ -31,9 +31,12 @@ $bot.command :help do |event|
 	  embed.add_field(name: "#{$prefix}info", value: "Responds with info")
 		embed.add_field(name: "@#{$bot_name}#{$bot_tag}", value: "Cleverbot with it")
 		embed.add_field(name: "#{$prefix}avatar <mention>", value: "Responds with the avatar of the mentioned user")
+		embed.add_field(name: "#{$prefix}bird", value: "Send a random bird picture :bird:")
 		embed.add_field(name: "#{$prefix}blush", value: "Blushes :blush:")
+		embed.add_field(name: "#{$prefix}cat", value: "Send a random cat picture :cat:")
 		embed.add_field(name: "#{$prefix}cookie", value: "Responds with a :cookie:")
 		embed.add_field(name: "#{$prefix}ddg", value: "Searches something using duckduckgo for you")
+		embed.add_field(name: "#{$prefix}doge", value: "Send a random doge picture :dog:")
 		embed.add_field(name: "#{$prefix}hug <mention>", value: "Hugs mentioned user")
 		embed.add_field(name: "#{$prefix}id <mention>", value: "Responds with the id of the mentioned user")
 		embed.add_field(name: "#{$prefix}kiss <mention>", value: "Kisses mentioned user")
@@ -151,12 +154,18 @@ $bot.command :kiss, min_args: 1, max_args: 1 do |event, user|
 	user = user[2..-2]
 	begin
 		mentioned_user = $bot.user(user);
-		event.respond "#{mentioned_user.mention}, #{event.user.mention} kissed you :kiss:"
+		event.channel.send_embed do |embed|
+		embed.colour = 0xffff00
+		embed.description = "#{mentioned_user.mention}, #{event.user.mention} kissed you :kiss:"
+		end
 	rescue
 		begin
 			user = user[1..-1]
 			mentioned_user = $bot.user(user);
-			event.respond "#{mentioned_user.mention}, #{event.user.mention} kissed you :kiss:"
+			event.channel.send_embed do |embed|
+			embed.colour = 0xffff00
+			embed.description = "#{mentioned_user.mention}, #{event.user.mention} kissed you :kiss:"
+			end
 		end
 	end
 end
@@ -165,18 +174,27 @@ $bot.command :hug, min_args: 1, max_args: 1 do |event, user|
 	user = user[2..-2]
 	begin
 		mentioned_user = $bot.user(user);
-		event.respond "#{mentioned_user.mention}, #{event.user.mention} hugged you :hugging:"
+		event.channel.send_embed do |embed|
+		embed.colour = 0xffff00
+		embed.description = "#{mentioned_user.mention}, #{event.user.mention} hugged you :hugging:"
+			end
 	rescue
 		begin
 			user = user[1..-1]
 			mentioned_user = $bot.user(user);
-			event.respond "#{mentioned_user.mention}, #{event.user.mention} hugged you :hugging:"
+			event.channel.send_embed do |embed|
+			embed.colour = 0xffff00
+			embed.description = "#{mentioned_user.mention}, #{event.user.mention} hugged you :hugging:"
+			end
 		end
 	end
 end
 #Notices you
 $bot.command :noticeme do |event|
-			event.respond "#{event.user.mention}, I notice you :relaxed:"
+	event.channel.send_embed do |embed|
+	embed.colour = 0xffff00
+	embed.description = "#{event.user.mention}, I notice you :relaxed:"
+	end
 end
 #Blushes
 $bot.command :blush do |event|
@@ -190,12 +208,18 @@ $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
 	user = user[2..-2]
 	begin
 		mentioned_user = $bot.user(user);
-		event.respond "#{mentioned_user.mention}, shot #{event.user.mention} :gun:"
+		event.channel.send_embed do |embed|
+		embed.colour = 0xffff00
+		embed.description = "#{mentioned_user.mention}, shot #{event.user.mention} :gun:"
+		end
 	rescue
 		begin
 			user = user[1..-1]
 			mentioned_user = $bot.user(user);
-			event.respond "#{mentioned_user.mention}, shot #{event.user.mention} :gun:"
+			event.channel.send_embed do |embed|
+			embed.colour = 0xffff00
+			embed.description = "#{mentioned_user.mention}, shot #{event.user.mention} :gun:"
+			end
 		end
 	end
 end
@@ -234,6 +258,31 @@ $bot.command :id, min_args: 1, max_args: 1 do |event, user|
 		end
 	end
 end
+
+#Responds with a random dog
+$bot.command :doge do |event|
+  event.channel.send_embed do |embed|
+  embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get('http://shibe.online/api/shibes?count=1').parse[0])
+  embed.color = 0xffff00
+  end
+end
+
+#Responds with a random cat
+$bot.command :cat do |event|
+  event.channel.send_embed do |embed|
+  embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get('http://shibe.online/api/cats?count=1').parse[0])
+  embed.color = 0xffff00
+   end
+ end
+
+#Responds with a random bird
+$bot.command :bird do |event|
+  event.channel.send_embed do |embed|
+  embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get('http://shibe.online/api/birds?count=1').parse[0])
+  embed.color = 0xffff00
+   end
+end
+
 #Responses with a cookie
 $bot.command :cookie do |event|
 	event.channel.send_embed do |embed|
@@ -241,6 +290,23 @@ $bot.command :cookie do |event|
 	embed.title = ":cookie:"
 	end
 end
+
+=begin
+$bot.command :eval do |event, *code|
+break unless event.user.id == YOUR_ID
+	begin
+        eval code.join(' ')
+	rescue => e
+        "Forgive me for I have sinned :pensive: ```#{e}```"
+	end
+end
+
+$bot.command :restart do |event|
+break unless event.user.id == YOUR_ID
+$bot.stop
+exit
+end
+=end
 
 #Playing Game
 $bot.ready do |_event|
