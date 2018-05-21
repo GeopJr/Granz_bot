@@ -35,6 +35,9 @@ $client_id = "Your Bot's ID"
 - Run it
 
 	`$ ruby Granz.rb`
+# Eval + Restart
+They are both commented out, uncomment them if you want them and replace
+`YOUR_ID with your id`
 # License
  The Bot is using MIT License
 # Copyrights
