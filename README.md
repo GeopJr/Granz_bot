@@ -5,6 +5,7 @@ A Discord Bot written in ruby using discordrb
 
 [![Discord Bots](https://discordbots.org/api/widget/status/443053627419000833.svg)](https://discordbots.org/bot/443053627419000833)
 [![Discord Bots](https://discordbots.org/api/widget/lib/443053627419000833.svg)](https://discordbots.org/bot/443053627419000833)
+[![Maintainability](https://api.codeclimate.com/v1/badges/383cd0cd0c9fdc26c487/maintainability)](https://codeclimate.com/github/GeopJr/Granz_bot/maintainability)
 # About it
 This started as a project to understand ruby while learning it
 # Invite it
