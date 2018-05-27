@@ -85,11 +85,12 @@ end
 #Cleverbot
 $bot.message do |event|
   if event.message.content.start_with?("<@#{$bot.profile.id}>") || event.message.content.start_with?("<@#{$bot.profile.id}>")
-   	event.channel.start_typing
-	event.channel.send_embed do |embed|
-	embed.colour = 0xffff00
-	embed.title = talk.say(event.message.content.gsub("<@#{$bot.profile.id}>", '').gsub("<@!#{$bot.profile.id}>", ''))
-	end
+    event.channel.start_typing
+		event.channel.send_embed do |embed|
+		embed.colour = 0xffff00
+		embed.title = talk.say(event.message.content.gsub("<@#{$bot.profile.id}>", '').gsub("<@!#{$bot.profile.id}>", ''))
+		embed.description = "Replying to : #{event.user.mention}"
+		end
   end
 end
 #Answers yes or no
@@ -210,7 +211,7 @@ $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
 		mentioned_user = $bot.user(user);
 		event.channel.send_embed do |embed|
 		embed.colour = 0xffff00
-		embed.description = "#{mentioned_user.mention}, shot #{event.user.mention} :gun:"
+		embed.description = "#{mentioned_user.mention}, #{event.user.mention} shot you :gun:"
 		end
 	rescue
 		begin
@@ -218,7 +219,7 @@ $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
 			mentioned_user = $bot.user(user);
 			event.channel.send_embed do |embed|
 			embed.colour = 0xffff00
-			embed.description = "#{mentioned_user.mention}, shot #{event.user.mention} :gun:"
+			embed.description = "#{mentioned_user.mention}, #{event.user.mention} shot you :gun:"
 			end
 		end
 	end
