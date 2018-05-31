@@ -31,6 +31,7 @@ $bot.command :help do |event|
 	  embed.add_field(name: "#{$prefix}info", value: "Responds with info")
 		embed.add_field(name: "@#{$bot_name}#{$bot_tag}", value: "Cleverbot with it")
 		embed.add_field(name: "#{$prefix}avatar <mention>", value: "Responds with the avatar of the mentioned user")
+		#embed.add_field(name: "#{$prefix}bara", value: "Will respond with a bara image :octagonal_sign:NSFW:octagonal_sign:")
 		embed.add_field(name: "#{$prefix}bird", value: "Send a random bird picture :bird:")
 		embed.add_field(name: "#{$prefix}blush", value: "Blushes :blush:")
 		embed.add_field(name: "#{$prefix}cat", value: "Send a random cat picture :cat:")
@@ -283,6 +284,18 @@ $bot.command :bird do |event|
   embed.color = 0xffff00
    end
 end
+
+=begin
+#Responds with a bara image
+$bot.command :bara do |event|
+next event.respond "I'm sorry. I can't do that because this is a SFW channel." unless event.channel.nsfw
+  event.channel.send_embed do |embed|
+  embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://barapi.geopjr.de/")
+  embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get('https://barapi.geopjr.de/api/random.php').parse[0])
+  embed.color = 0xffff00
+  end
+end
+=end
 
 #Responses with a cookie
 $bot.command :cookie do |event|
