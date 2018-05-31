@@ -14,6 +14,9 @@ This started as a project to understand ruby while learning it
 ![alt text](https://raw.githubusercontent.com/GeopJr/Granz_website/master/granz_cmd.png)
 # How to set it up
 - Install ruby on your OS
+- Install Bundler
+
+	`$ gem install bundler`
 - Install Gems
 
 	`$ bundle install`
@@ -35,7 +38,7 @@ $client_id = "Your Bot's ID"
     `talk = Cleverbot.new('YOUR_API_USER', 'YOUR_API_KEY')`
 - Run it
 
-	`$ ruby Granz.rb`
+	`$ bundle exec ruby Granz.rb`
 # Eval + Restart
 They are both commented out, uncomment them if you want them and replace
 `YOUR_ID with your id`
