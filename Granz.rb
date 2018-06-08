@@ -112,17 +112,19 @@ $bot.message do |event|
   end
 end
 #Vigenere Encode and Decode
-$bot.command :vencode, min_args: 2 do |event, key, text|
+$bot.command :vencode, min_args: 2 do |event, key, *text|
+  message = text.join(" ")
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
-    embed.title = Vigenere.encode("#{key.upcase}", "#{text.upcase}")
+    embed.title = Vigenere.encode("#{key.upcase}", "#{message.upcase}")
   end
 end
 
-$bot.command :vdecode, min_args: 2 do |event, key, code|
+$bot.command :vdecode, min_args: 2 do |event, key, *code|
+  message = code.join(" ")
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
-    embed.title = Vigenere.decode("#{key.upcase}", "#{code.upcase}")
+    embed.title = Vigenere.decode("#{key.upcase}", "#{message.upcase}")
   end
 end
 # Answers yes or no
