@@ -12,6 +12,7 @@ This started as a project to understand ruby while learning it
 [CLICK HERE](https://discordapp.com/oauth2/authorize?client_id=443053627419000833&scope=bot&permissions=103894080&redirect_uri=https://granz.geopjr.de/thanks.html&response_type=code)
 # Commands
 ![commands](https://raw.githubusercontent.com/GeopJr/Granz_website/master/granz_cmd.png)
+
 ![commands_encrypt](https://github.com/GeopJr/Granz_website/blob/master/granz_encrypt.png)
 # How to set it up
 - Install ruby on your OS
