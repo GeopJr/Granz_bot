@@ -3,4 +3,5 @@ source 'https://rubygems.org' do
   gem 'json'
   gem 'cleverbot_io'
   gem 'http'
+  gem "vigenere"
 end
