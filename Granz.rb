@@ -39,6 +39,7 @@ $bot.command :help do |event|
     embed.add_field(name: "#{$prefix}cookie", value: "Responds with a :cookie:")
     embed.add_field(name: "#{$prefix}ddg", value: "Searches something using duckduckgo for you")
     embed.add_field(name: "#{$prefix}doge", value: "Send a random doge picture :dog:")
+    embed.add_field(name: "#{$prefix}howgay <mention/something>", value: "Tells you how gay is something :gay_pride_flag:")
     embed.add_field(name: "#{$prefix}hug <mention>", value: "Hugs mentioned user")
     embed.add_field(name: "#{$prefix}id <mention>", value: "Responds with the id of the mentioned user")
     embed.add_field(name: "#{$prefix}kiss <mention>", value: "Kisses mentioned user")
@@ -265,6 +266,16 @@ $bot.command :rate, min_args: 1 do |event, *rating|
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.description = "I give #{message} a #{arr.sample}/10 ~#{$bot_name}"
+  end
+end
+#Tells you how gay something or someone is
+$bot.command :howgay, min_args: 1 do |event, *rating|
+  arr = (0..100).to_a
+  message = rating.join(" ")
+  event.channel.send_embed do |embed|
+    embed.title = "How much of a homosexual are you ?"
+    embed.colour = 0xffff00
+    embed.description = "#{message} is #{arr.sample}/100 homosexual :gay_pride_flag:"
   end
 end
 # Reverses something
