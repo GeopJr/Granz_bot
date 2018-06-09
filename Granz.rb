@@ -324,7 +324,7 @@ end
 # next event.respond "I'm sorry. I can't do that because this is a SFW channel." unless event.channel.nsfw
 #   event.channel.send_embed do |embed|
 #   embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://barapi.geopjr.de/")
-#   embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get('https://barapi.geopjr.de/api/random.php').parse[0])
+#   embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get('https://barapi.000webhostapp.com/api/random.php').parse[0])
 #   embed.color = 0xffff00
 #   end
 # end
