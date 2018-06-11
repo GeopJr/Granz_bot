@@ -57,7 +57,6 @@ This started as a project to understand ruby while learning it
 | --bara | Will respond with a bara image NSFW |
 | --blush | Blushes |
 
-![commands_encrypt](https://github.com/GeopJr/Granz_website/blob/master/granz_encrypt.png)
 # How to set it up
 - Install ruby on your OS
 - Install Bundler
