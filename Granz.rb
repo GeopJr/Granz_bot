@@ -27,30 +27,7 @@ $bot.command :help do |event|
     embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
     embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "\xE3\x80\x8EGeop\xE3\x80\x8F#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
 
-    embed.add_field(name: "Commands", value: "All Commands")
-    embed.add_field(name: "#{$prefix}help", value: "Responds with this")
-    embed.add_field(name: "#{$prefix}info", value: "Responds with info")
-    embed.add_field(name: "@#{$bot_name}#{$bot_tag}", value: "Cleverbot with it")
-    embed.add_field(name: "#{$prefix}avatar <mention>", value: "Responds with the avatar of the mentioned user")
-    # embed.add_field(name: "#{$prefix}bara", value: "Will respond with a bara image :octagonal_sign:NSFW:octagonal_sign:")
-    embed.add_field(name: "#{$prefix}bird", value: "Send a random bird picture :bird:")
-    embed.add_field(name: "#{$prefix}blush", value: "Blushes :blush:")
-    embed.add_field(name: "#{$prefix}cat", value: "Send a random cat picture :cat:")
-    embed.add_field(name: "#{$prefix}cookie", value: "Responds with a :cookie:")
-    embed.add_field(name: "#{$prefix}ddg", value: "Searches something using duckduckgo for you")
-    embed.add_field(name: "#{$prefix}doge", value: "Send a random doge picture :dog:")
-    embed.add_field(name: "#{$prefix}howgay <mention/something>", value: "Tells you how gay is something :gay_pride_flag:")
-    embed.add_field(name: "#{$prefix}hug <mention>", value: "Hugs mentioned user")
-    embed.add_field(name: "#{$prefix}id <mention>", value: "Responds with the id of the mentioned user")
-    embed.add_field(name: "#{$prefix}kiss <mention>", value: "Kisses mentioned user")
-    embed.add_field(name: "#{$prefix}lmgtfy", value: "Google's something for you")
-    embed.add_field(name: "#{$prefix}noticeme", value: "Notices you")
-    embed.add_field(name: "#{$prefix}ping", value: "Responds with Pong!")
-    embed.add_field(name: "#{$prefix}rate <something>", value: "Rates Something")
-    embed.add_field(name: "#{$prefix}reverse <something>", value: "Responds with the reversed version of something")
-    embed.add_field(name: "#{$prefix}shoot <mention>", value: "Shoots mentioned user")
-    embed.add_field(name: "#{$prefix}uptime", value: "Responds with bot's uptime")
-    embed.add_field(name: "#{$prefix}yesno", value: "Responds with yes or no to a question")
+    embed.description = "[Command List !](https://granz.geopjr.de/commands.html)"
   end
 end
 # Info
@@ -69,21 +46,6 @@ $bot.command :info do |event|
     embed.add_field(name: "Invite Link", value: "https://discordapp.com/oauth2/authorize?client_id=#{$client_id}&scope=bot&permissions=103894080")
     embed.add_field(name: "MIT Licenced", value: "https://github.com/GeopJr/Granz_bot")
     embed.add_field(name: "Updates", value: "At least 2 commands a week")
-  end
-end
-#Encryption Menu
-$bot.command :encrypt do |event|
-  event.channel.send_embed do |embed|
-    embed.title = "This is the Encryption and Decryption Menu"
-    embed.colour = 0xffff00
-
-    embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
-    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "\xE3\x80\x8EGeop\xE3\x80\x8F#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
-
-    embed.add_field(name: "Encrypt", value: "Encryption Commands")
-    embed.add_field(name: "#{$prefix}vencode <key> <text>", value: "Vigenere Cipher Encryption , Responds with encoded msg")
-    embed.add_field(name: "Decrypt", value: "Decryption Commands")
-    embed.add_field(name: "#{$prefix}vdecode <key> <code>", value: "Vigenere Cipher Decryption , Responds with decoded msg")
   end
 end
 
@@ -110,6 +72,24 @@ $bot.message do |event|
       embed.title = talk.say(event.message.content.gsub("<@#{$bot.profile.id}>", "").gsub("<@!#{$bot.profile.id}>", ""))
       embed.description = "Replying to : #{event.user.mention}"
     end
+  end
+end
+#Kick and Ban
+$bot.command :kick, min_args: 1, max_args: 1, required_permissions: [:kick_members] do |event, user|
+  event.server.kick(event.bot.parse_mention(user))
+  event.channel.send_embed do |embed|
+    embed.colour = 0xffff00
+    embed.title = "Kicked"
+    embed.description = "#{user}"
+  end
+end
+
+$bot.command :ban, min_args: 1, max_args: 1, required_permissions: [:ban_members] do |event, user|
+  event.server.ban(event.bot.parse_mention(user))
+  event.channel.send_embed do |embed|
+    embed.colour = 0xffff00
+    embed.title = "Banned"
+    embed.description = "#{user}"
   end
 end
 #Vigenere Encode and Decode
@@ -285,6 +265,20 @@ $bot.command :reverse, min_args: 1 do |event, *args|
     embed.title = args.join(" ").reverse.to_s
   end
 end
+#Lowercase and Uppercase
+$bot.command :uppercase, min_args: 1 do |event, *args|
+  event.channel.send_embed do |embed|
+    embed.colour = 0xffff00
+    embed.title = "#{args.join(" ").upcase}"
+  end
+end
+
+$bot.command :lowercase, min_args: 1 do |event, *args|
+  event.channel.send_embed do |embed|
+    embed.colour = 0xffff00
+    embed.title = "#{args.join(" ").downcase}"
+  end
+end
 # Responds with the id of the tagged user
 $bot.command :id, min_args: 1, max_args: 1 do |event, user|
   user = user[2..-2]
@@ -346,6 +340,7 @@ $bot.command :cookie do |event|
     embed.colour = 0xffff00
     embed.title = ":cookie:"
   end
+  event.message.react "🍪"
 end
 
 # $bot.command :eval do |event, *code|
