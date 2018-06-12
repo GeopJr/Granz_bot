@@ -30,6 +30,11 @@ This started as a project to understand ruby while learning it
 | --shoot  | Shoots mentioned user |
 | --yesno  | Responds with yes or no to a question |
 
+| Gaming Commands | Description |
+| --- | --- |
+| --tanki <user>  | Gives you stats about specific user on tanki |
+| --ban  | Bans mentioned user |
+
 | Useful Commands | Description |
 | --- | --- |
 | --avatar | Responds with the avatar of the mentioned user |
