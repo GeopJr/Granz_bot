@@ -472,7 +472,7 @@ $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
     if parse["response"]["rating"]["efficiency"]["position"] == -1
       eplac = "-"
     else
-      eplac = parse["response"]["rating"]["efficiency"]["position"].to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+      eplac = parse["response"]["rating"]["efficiency"]["position"].to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
     end
     if parse["response"]["rating"]["efficiency"]["value"] == -1
       evalu = "-"
@@ -482,7 +482,7 @@ $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
     if parse["response"]["rating"]["score"]["position"] == -1
       explac = "-"
     else
-      explac = parse["response"]["rating"]["score"]["position"].to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+      explac = parse["response"]["rating"]["score"]["position"].to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
     end
     if parse["response"]["rating"]["score"]["value"] == -1
       exvalu = "-"
