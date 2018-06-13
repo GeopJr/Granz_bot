@@ -469,8 +469,26 @@ $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
     kills = parse["response"]["kills"]
     deaths = parse["response"]["deaths"]
     kd = kills.to_f / deaths
-    eplac = parse["response"]["rating"]["efficiency"]["position"]
-    evalu = parse["response"]["rating"]["efficiency"]["value"]
+    if parse["response"]["rating"]["efficiency"]["position"] == -1
+      eplac = "-"
+    else
+      eplac = parse["response"]["rating"]["efficiency"]["position"]
+    end
+    if parse["response"]["rating"]["efficiency"]["value"] == -1
+      evalu = "-"
+    else
+      evalu = parse["response"]["rating"]["efficiency"]["value"].round(-2).to_s.chomp("00").chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+    end
+    if parse["response"]["rating"]["score"]["position"] == -1
+      explac = "-"
+    else
+      explac = parse["response"]["rating"]["score"]["position"]
+    end
+    if parse["response"]["rating"]["score"]["value"] == -1
+      exvalu = "-"
+    else
+      exvalu = parse["response"]["rating"]["score"]["value"].to_s.chomp("00").chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+    end
     event.channel.send_embed do |embed|
       embed.title = "Stats of #{nick}"
       embed.url = "http://ratings.tankionline.com/en/user/#{nick}/"
@@ -489,7 +507,8 @@ $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
       embed.add_field(name: "__Kills__", value: "#{kills.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}", inline: true)
       embed.add_field(name: "__Deaths__", value: "#{deaths.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}", inline: true)
       embed.add_field(name: "__K/D Ratio__", value: "#{kd.round(2)}", inline: true)
-      embed.add_field(name: "__Rating Efficiency Place | Value__", value: "#{eplac.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse} | #{evalu.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}")
+      embed.add_field(name: "__Efficiency Rating Place | Value__", value: "#{eplac} | #{evalu}")
+      embed.add_field(name: "__Experience Rating Place | Value__", value: "#{explac} | #{exvalu}")
     end
   rescue
     event.channel.send_embed do |embed|
