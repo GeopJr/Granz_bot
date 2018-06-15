@@ -264,6 +264,15 @@ $bot.command :rate, min_args: 1 do |event, *rating|
     embed.description = "I give #{message} a #{arr.sample}/10 ~#{$bot_name}"
   end
 end
+#Chooses between things
+$bot.command :choose, min_args: 1 do |event, *choices|
+  arr = choices
+  event.channel.send_embed do |embed|
+    embed.colour = 0xffff00
+    embed.title = "Hmm, I pick :"
+    embed.description = "#{arr.sample}"
+  end
+end
 #Tells you how gay something or someone is
 $bot.command :howgay, min_args: 1 do |event, *rating|
   arr = (0..100).to_a
