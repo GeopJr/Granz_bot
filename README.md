@@ -1,4 +1,4 @@
-# Granz
+![introduction](https://i.imgur.com/90xR5vB.png)
 
 <div align="center">
   <br />
@@ -13,7 +13,8 @@
   </p>
 </div>
 
-A Discord Bot written in ruby using discordrb
+# Granz
+#### A Discord Bot written in ruby using discordrb
 
 # About it
 This started as a project to understand ruby while learning it
