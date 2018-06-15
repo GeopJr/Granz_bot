@@ -1,13 +1,20 @@
-<p align="center">
 # Granz
-</p>
+
+<div align="center">
+  <br />
+  <p>
+    <img src="https://i.imgur.com/kG2PYbz.jpg" alt="Granz_avatar"/></a>
+  </p>
+  <br />
+  <p>
+    <a href="https://discordbots.org/bot/443053627419000833"><img src="https://discordbots.org/api/widget/status/443053627419000833.svg" alt="Discord_Bots" /></a>
+    <a href="https://discordbots.org/bot/443053627419000833"><img src="https://discordbots.org/api/widget/lib/443053627419000833.svg" alt="Discord_Bots" /></a>
+    <a href="https://codeclimate.com/github/GeopJr/Granz_bot/maintainability"><img src="https://api.codeclimate.com/v1/badges/383cd0cd0c9fdc26c487/maintainability" alt="Maintainability" /></a>
+  </p>
+</div>
+
 A Discord Bot written in ruby using discordrb
 
-![Granz avatar](https://i.imgur.com/kG2PYbz.jpg)
-
-[![Discord Bots](https://discordbots.org/api/widget/status/443053627419000833.svg)](https://discordbots.org/bot/443053627419000833)
-[![Discord Bots](https://discordbots.org/api/widget/lib/443053627419000833.svg)](https://discordbots.org/bot/443053627419000833)
-[![Maintainability](https://api.codeclimate.com/v1/badges/383cd0cd0c9fdc26c487/maintainability)](https://codeclimate.com/github/GeopJr/Granz_bot/maintainability)
 # About it
 This started as a project to understand ruby while learning it
 # Invite it
