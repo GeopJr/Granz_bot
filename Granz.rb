@@ -265,7 +265,7 @@ $bot.command :rate, min_args: 1 do |event, *rating|
   end
 end
 #Chooses between things
-$bot.command :choose, min_args: 1 do |event, *choices|
+$bot.command :choose, min_args: 2 do |event, *choices|
   arr = choices
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
