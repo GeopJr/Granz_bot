@@ -1,3 +1,4 @@
+<p align="center">
 # Granz
 A Discord Bot written in ruby using discordrb
 
@@ -96,3 +97,4 @@ They are both commented out, uncomment them if you want them and replace
  The Bot is using MIT License
 # Copyrights
 Granz's avatar is copyrighted under [Mentaiko Itto©](https://twitter.com/ittorasii)
+</p>
