@@ -22,57 +22,14 @@ This started as a project to understand ruby while learning it
 # Invite it
 [CLICK HERE](https://discordapp.com/oauth2/authorize?client_id=443053627419000833&scope=bot&permissions=103894080&redirect_uri=https://granz.geopjr.de/thanks.html&response_type=code)
 # Commands
- | Basic Commands | Description | 
- | --- | --- |
- | --info | Responds with bot's info |
- | @Granz#8561 | Cleverbot with it |
- 
- | Fun Commands | Description |
- | --- | --- |
- | --bird | Sends a random bird picture |
- | --cat | Sends a random cat picture | 
- | --cookie | Responds with a cookie | 
- | --doge | Sends a random doge picture | 
- | --howgay  | Tells you how gay is something |
-| --hug  | Hugs mentioned user |
-| --kiss  | Kisses mentioned user |
-| --noticeme | Notices you |
-| --rate  | Rates something |
-| --shoot  | Shoots mentioned user |
-| --yesno  | Responds with yes or no to a question |
+- Cleverbot
+- Fun Commands
+- Moderation Commands
+- Useful Commands
+- Gaming Commands
+- Encryption Commands
 
-| Gaming Commands | Description |
-| --- | --- |
-| --tanki <user>  | Gives you stats about specific user on tanki |
-| --ban  | Bans mentioned user |
-
-| Useful Commands | Description |
-| --- | --- |
-| --avatar | Responds with the avatar of the mentioned user |
-| --ddg | Searches something using duckduckgo for you |
-| --id  | Responds with a cookie |
-| --lmgtfy | Google's something for you |
-| --ping | Responds with Pong! |
-| --reverse  | Responds with the reversed version of something |
-| --uppercase  | Responds with the uppercased version of something |
-| --lowercase  | Responds with the lowercased version of something |
-| --uptime | Responds with bot's uptime |
-
-| Moderation Commands | Description |
-| --- | --- |
-| --kick  | Kicks mentioned user |
-| --ban  | Bans mentioned user |
-
-| Encryption Commands | Description |
-| --- | --- |
-| --vencode   | Vigenere Cipher Encryption |
-| --vencode   | Vigenere Cipher Decryption |
-
-| Other Commands | Description |
-| --- | --- |
-| --bara | Will respond with a bara image NSFW |
-| --blush | Blushes |
-
+- Full list [HERE](https://granz.geopjr.de/commands.html)
 # How to set it up
 - Install ruby on your OS
 - Install Bundler
@@ -102,7 +59,7 @@ $client_id = "Your Bot's ID"
 	`$ bundle exec ruby Granz.rb`
 # Eval + Restart
 They are both commented out, uncomment them if you want them and replace
-`YOUR_ID with your id`
+`YOUR_ID` with your id
 # License
  The Bot is using MIT License
 # Copyrights
