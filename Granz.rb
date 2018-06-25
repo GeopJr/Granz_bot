@@ -134,18 +134,26 @@ $bot.command :yesno, min_args: 1 do |event|
 end
 # Generates a let me google that for you link
 $bot.command :lmgtfy do |event, *args|
-  event.respond "#{event.user.mention},"
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = format("<http://lmgtfy.com/?q=%s>", args.join("+"))
+    embed.description = "Replying to : #{event.user.mention}"
   end
 end
 # Generates a duckduckgo link
 $bot.command :ddg do |event, *args|
-  event.respond "#{event.user.mention},"
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = format("<http://duckduckgo.com/%s?ia=web>", args.join("%20"))
+    embed.description = "Replying to : #{event.user.mention}"
+  end
+end
+# Generates a google link
+$bot.command :google do |event, *args|
+  event.channel.send_embed do |embed|
+    embed.colour = 0xffff00
+    embed.title = format("<https://www.google.com/search?q=%s>", args.join("+"))
+    embed.description = "Replying to : #{event.user.mention}"
   end
 end
 # Responds with the avatar of the tagged user
