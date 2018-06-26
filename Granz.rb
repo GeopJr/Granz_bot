@@ -133,7 +133,7 @@ $bot.command :yesno, min_args: 1 do |event|
   end
 end
 # Generates a let me google that for you link
-$bot.command :lmgtfy do |event, *args|
+$bot.command :lmgtfy, min_args: 1 do |event, *args|
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = format("<http://lmgtfy.com/?q=%s>", args.join("+"))
@@ -141,7 +141,7 @@ $bot.command :lmgtfy do |event, *args|
   end
 end
 # Generates a duckduckgo link
-$bot.command :ddg do |event, *args|
+$bot.command :ddg, min_args: 1 do |event, *args|
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = format("<http://duckduckgo.com/%s?ia=web>", args.join("%20"))
@@ -149,7 +149,7 @@ $bot.command :ddg do |event, *args|
   end
 end
 # Generates a google link
-$bot.command :google do |event, *args|
+$bot.command :google, min_args: 1 do |event, *args|
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = format("<https://www.google.com/search?q=%s>", args.join("+"))
@@ -310,6 +310,21 @@ $bot.command :lowercase, min_args: 1 do |event, *args|
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = "#{args.join(" ").downcase}"
+  end
+end
+# Qrcode Generator
+$bot.command :qrcode, min_args: 1 do |event, *args|
+  event.channel.send_embed do |embed|
+    embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://chart.googleapis.com/chart?cht=qr&chs=512x512&chl=#{args.join("+")}")
+    embed.color = 0xffff00
+  end
+end
+# Algebra Visualizer
+$bot.command :algebra, min_args: 1 do |event, *args|
+  vis = args.join(" ").gsub("+", "%2B").gsub("=", "%3D").gsub("/", "%2F").gsub(",", "%2C").gsub(".", "%2E")
+  event.channel.send_embed do |embed|
+    embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://chart.googleapis.com/chart?cht=tx&chl=#{vis}")
+    embed.color = 0xffff00
   end
 end
 # Responds with the id of the tagged user
