@@ -321,7 +321,7 @@ $bot.command :qrcode, min_args: 1 do |event, *args|
 end
 # Algebra Visualizer
 $bot.command :algebra, min_args: 1 do |event, *args|
-  vis = args.join(" ").gsub("+", "%2B").gsub("=", "%3D").gsub("/", "%2F").gsub(",", "%2C").gsub(".", "%2E")
+  vis = args.join("").gsub("+", "%2B").gsub("=", "%3D").gsub("/", "%2F").gsub(",", "%2C").gsub(".", "%2E")
   event.channel.send_embed do |embed|
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://chart.googleapis.com/chart?cht=tx&chl=#{vis}")
     embed.color = 0xffff00
