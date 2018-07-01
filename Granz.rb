@@ -291,6 +291,16 @@ $bot.command :howgay, min_args: 1 do |event, *rating|
     embed.description = "#{message} is #{arr.sample}/100 homosexual :gay_pride_flag:"
   end
 end
+#Tells you how cute something or someone is
+$bot.command :howcute, min_args: 1 do |event, *rating|
+  arr = (0..100).to_a
+  message = rating.join(" ")
+  event.channel.send_embed do |embed|
+    embed.title = "How cute are you ?"
+    embed.colour = 0xffff00
+    embed.description = "#{message} is #{arr.sample}/100 cute :blush:"
+  end
+end
 # Reverses something
 $bot.command :reverse, min_args: 1 do |event, *args|
   event.channel.send_embed do |embed|
@@ -382,11 +392,29 @@ end
 #   end
 # end
 
-# Responses with a cookie
+#Responds with a random coffee image
+$bot.command :coffee do |event|
+  event.channel.send_embed do |embed|
+    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://coffee.alexflipnote.xyz/")
+    embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://coffee.alexflipnote.xyz/random.json").parse["file"])
+    embed.color = 0xffff00
+  end
+end
+#Responds with a random trump quote
+$bot.command :trump do |event|
+  event.channel.send_embed do |embed|
+    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://whatdoestrumpthink.com/")
+    embed.title = HTTP.get("https://api.whatdoestrumpthink.com/api/v1/quotes/random").parse["message"]
+    embed.colour = 0xffff00
+  end
+end
+# Responses with a cookie and a fortune
 $bot.command :cookie do |event|
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = ":cookie:"
+    embed.description = HTTP.get("http://www.yerkee.com/api/fortune").parse["fortune"]
+    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "http://www.yerkee.com/")
   end
   event.message.react "🍪"
 end
