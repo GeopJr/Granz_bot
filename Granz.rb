@@ -578,20 +578,32 @@ $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
   end
 end
 
-# $bot.command :eval do |event, *code|
-# break unless event.user.id == YOUR_ID
-#   begin
-#         eval code.join(' ')
-#   rescue => e
-#         "Forgive me for I have sinned :pensive: ```#{e}```"
-#   end
-# end
-#
-# $bot.command :restart do |event|
-# break unless event.user.id == YOUR_ID
-# $bot.stop
-# exit
-# end
+=begin
+$bot.command :eval do |event, *code|
+  break unless event.user.id == 216_156_825_978_929_152
+  begin
+    input = eval code.join(" ")
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Success"
+      embed.description = ":inbox_tray: Input:\n```#{code.join(" ")}```\n:outbox_tray: Output:\n```#{input}```"
+    end
+  rescue StandardError => e
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Forgive me for I have sinned :pensive:"
+      embed.description = ":inbox_tray: Input:\n```#{code.join(" ")}```\n:outbox_tray: Output:\n```#{e}```"
+    end
+  end
+end
+=end
+=begin
+$bot.command :restart do |event|
+  break unless event.user.id == YOUR_ID
+  $bot.stop
+  exit
+end
+=end
 
 # Playing Game
 $bot.ready do |_event|
