@@ -358,10 +358,29 @@ $bot.command :id, min_args: 1, max_args: 1 do |event, user|
   end
 end
 
-# Responds with a random dog
+# Responds with a random shiba inu
 $bot.command :doge do |event|
   event.channel.send_embed do |embed|
+    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "http://shibe.online/")
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("http://shibe.online/api/shibes?count=1").parse[0])
+    embed.color = 0xffff00
+  end
+end
+
+#Responds with a random fox
+$bot.command :fox do |event|
+  event.channel.send_embed do |embed|
+    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://randomfox.ca/")
+    embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://randomfox.ca/floof/").parse["image"])
+    embed.color = 0xffff00
+  end
+end
+
+#Responds with a random dog
+$bot.command :dog do |event|
+  event.channel.send_embed do |embed|
+    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://random.dog/")
+    embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://random.dog/woof.json").parse["url"])
     embed.color = 0xffff00
   end
 end
@@ -369,6 +388,7 @@ end
 # Responds with a random cat
 $bot.command :cat do |event|
   event.channel.send_embed do |embed|
+    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "http://shibe.online/")
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("http://shibe.online/api/cats?count=1").parse[0])
     embed.color = 0xffff00
   end
@@ -376,6 +396,7 @@ end
 
 # Responds with a random bird
 $bot.command :bird do |event|
+  embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "http://shibe.online/")
   event.channel.send_embed do |embed|
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("http://shibe.online/api/birds?count=1").parse[0])
     embed.color = 0xffff00
