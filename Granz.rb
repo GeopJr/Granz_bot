@@ -629,7 +629,7 @@ end
 # Playing Game
 $bot.ready do |_event|
   $uptimer = Time.now
-  $bot.game = "#{$prefix}help | in #{_event.bot.servers.count} servers"
+  $bot.listening = "#{$prefix}help | in #{_event.bot.servers.count} servers"
 end
 # No need to explain
 $bot.run
