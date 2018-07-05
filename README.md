@@ -65,3 +65,10 @@ They are both commented out, uncomment them if you want them and replace
 # Copyrights
 Granz's avatar is copyrighted under [Mentaiko Itto©](https://twitter.com/ittorasii)
 
+<div align="center">
+  <br />
+  <p>
+    <img src="https://i.imgur.com/uIOpz3t.png" alt="info"/></a>
+  </p>
+  </div>
+
