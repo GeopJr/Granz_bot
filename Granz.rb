@@ -535,7 +535,8 @@ $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
       rank = "Generalissimo"
       rimg = "https://i.imgur.com/Fggz9xh.png"
     elsif parse["response"]["rank"] > 31
-      rank = "Legend"
+      numrank = parse["response"]["rank"] - 30
+      rank = "Legend #{numrank}"
       rimg = "https://i.imgur.com/NahcZQ9.png"
     else parse["response"]["rank"] == 31
       rank = "Legend"
