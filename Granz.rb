@@ -574,6 +574,26 @@ $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
     else
       exvalu = parse["response"]["rating"]["score"]["value"].to_s.chomp("00").chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
     end
+    if parse["response"]["rating"]["golds"]["position"] == -1
+      gplac = "-"
+    else
+      gplac = parse["response"]["rating"]["golds"]["position"].to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+    end
+    if parse["response"]["rating"]["golds"]["value"] == -1
+      gvalu = "-"
+    else
+      gvalu = parse["response"]["rating"]["golds"]["value"].to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+    end
+    if parse["response"]["rating"]["crystals"]["position"] == -1
+      cryplac = "-"
+    else
+      cryplac = parse["response"]["rating"]["crystals"]["position"].to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+    end
+    if parse["response"]["rating"]["crystals"]["value"] == -1
+      cryvalu = "-"
+    else
+      cryvalu = parse["response"]["rating"]["crystals"]["value"].to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
+    end
     event.channel.send_embed do |embed|
       embed.title = "Stats of #{nick}"
       embed.url = "http://ratings.tankionline.com/en/user/#{nick}/"
@@ -594,6 +614,8 @@ $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
       embed.add_field(name: "__K/D Ratio__", value: "#{kd.round(2)}", inline: true)
       embed.add_field(name: "__Efficiency Rating Place | Value__", value: "#{eplac} | #{evalu}")
       embed.add_field(name: "__Experience Rating Place | Value__", value: "#{explac} | #{exvalu}")
+      embed.add_field(name: "__Gold Box Rating Place | Value__", value: "#{gplac} | #{gvalu}")
+      embed.add_field(name: "__Crystals Rating Place | Value__", value: "#{cryplac} | #{cryvalu}")
     end
   rescue
     event.channel.send_embed do |embed|
