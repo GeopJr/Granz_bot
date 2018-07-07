@@ -1,6 +1,10 @@
-![introduction](https://i.imgur.com/90xR5vB.png)
-
 <div align="center">
+<br />
+  <p>
+    <img src="https://i.imgur.com/90xR5vB.png"/></a>
+  </p>
+  <br />
+  <p>
   <br />
   <p>
     <img src="https://i.imgur.com/kG2PYbz.jpg" alt="Granz_avatar"/></a>
