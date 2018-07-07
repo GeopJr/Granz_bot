@@ -624,6 +624,16 @@ $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
     end
   end
 end
+#Stats about the bot
+$bot.command :stats do |event|
+  members = 0
+  event.bot.servers.each { |x, y| members = members + y.member_count }
+  event.channel.send_embed do |embed|
+    embed.colour = 0xffff00
+    embed.title = "Stats"
+    embed.description = "Currently I'm on **#{event.bot.servers.size} servers** with a total user count of **#{members} users** in **#{event.bot.servers.collect { |x, y| y.channels.size }.inject(0, &:+)} channels**!"
+  end
+end
 
 =begin
 $bot.command :eval do |event, *code|
