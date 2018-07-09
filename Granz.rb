@@ -461,50 +461,50 @@ $bot.command :amiibo, min_args: 1, max_args: 1 do |event, name|
       embed.add_field(name: "__Game Series__", value: parse["amiibo"][0]["gameSeries"])
       embed.add_field(name: "__Release Day__", value: "**AU:** #{au}\n**EU:** #{eu}\n**JP:** #{jp}\n**NA:** #{na}")
     end
-   rescue
-      event.channel.send_embed do |embed|
-        embed.colour = 0xffff00
-        embed.title = "Not Found"
-      end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Not Found"
     end
+  end
 end
 #Generates Acronyms
-    $bot.command :acronym, min_args: 1, max_args: 1 do |event, acro|
-      begin
-        break unless acro.match(/^[a-zA-Z_\-+ ]*$/)
-        event.channel.send_embed do |embed|
-          embed.colour = 0xffff00
-          embed.title = "#{acro} Stands For :"
-          embed.description = HTTP.get("https://api.chew.pro/acronym/#{acro}").parse["phrase"]
-          embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://chew.pro/")
-        end
-      rescue
-        event.channel.send_embed do |embed|
-          embed.colour = 0xffff00
-          embed.title = "Only Latin Letters Please"
-        end
-      end
+$bot.command :acronym, min_args: 1, max_args: 1 do |event, acro|
+  begin
+    break unless acro.match(/^[a-zA-Z_\-+ ]*$/)
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "#{acro} Stands For :"
+      embed.description = HTTP.get("https://api.chew.pro/acronym/#{acro}").parse["phrase"]
+      embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://chew.pro/")
     end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Only Latin Letters Please"
+    end
+  end
+end
 #Responds with a joke
-    $bot.command :joke do |event|
-      url = URI.escape("https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke")
-      parse = JSON.parse(RestClient.get(url))
-      event.channel.send_embed do |embed|
-        embed.colour = 0xffff00
-        embed.title = parse["setup"]
-        embed.description = parse["punchline"]
-        embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://github.com/15Dkatz/official_joke_api")
-      end
-    end
+$bot.command :joke do |event|
+  url = URI.escape("https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke")
+  parse = JSON.parse(RestClient.get(url))
+  event.channel.send_embed do |embed|
+    embed.colour = 0xffff00
+    embed.title = parse["setup"]
+    embed.description = parse["punchline"]
+    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://github.com/15Dkatz/official_joke_api")
+  end
+end
 #Responds with a norris joke
-    $bot.command :norris do |event|
-      url = URI.escape("http://api.icndb.com/jokes/random")
-      parse = JSON.parse(RestClient.get(url))
-      event.channel.send_embed do |embed|
-        embed.colour = 0xffff00
-        embed.title = parse["value"]["joke"]
-      end
-    end
+$bot.command :norris do |event|
+  url = URI.escape("http://api.icndb.com/jokes/random")
+  parse = JSON.parse(RestClient.get(url))
+  event.channel.send_embed do |embed|
+    embed.colour = 0xffff00
+    embed.title = parse["value"]["joke"]
+  end
+end
 #Tanki Stats
 $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
   begin
