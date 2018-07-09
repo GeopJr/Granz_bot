@@ -39,13 +39,13 @@ $bot.command :info do |event|
     embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
     embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "\xE3\x80\x8EGeop\xE3\x80\x8F#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
 
-    embed.add_field(name: "Name & Avatar", value: "Granz is a character made by Mentaiko")
-    embed.add_field(name: "Version", value: $version.to_s)
-    embed.add_field(name: "Written in", value: "Ruby using discordrb")
-    embed.add_field(name: "Prefix", value: $prefix.to_s)
-    embed.add_field(name: "Invite Link", value: "https://discordapp.com/oauth2/authorize?client_id=#{$client_id}&scope=bot&permissions=103894080")
-    embed.add_field(name: "MIT Licenced", value: "https://github.com/GeopJr/Granz_bot")
-    embed.add_field(name: "Updates", value: "At least 2 commands a week")
+    embed.add_field(name: "__Name & Avatar__", value: "Granz is a character made by Mentaiko")
+    embed.add_field(name: "__Version__", value: $version.to_s)
+    embed.add_field(name: "__Written in__", value: "Ruby using discordrb")
+    embed.add_field(name: "__Prefix__", value: $prefix.to_s)
+    embed.add_field(name: "__Invite Link__", value: "[HERE](https://discordapp.com/oauth2/authorize?client_id=#{$client_id}&scope=bot&permissions=103894080)")
+    embed.add_field(name: "__MIT Licenced__", value: "https://github.com/GeopJr/Granz_bot")
+    embed.add_field(name: "__Updates__", value: "At least 2 commands a week")
   end
 end
 
@@ -439,6 +439,72 @@ $bot.command :cookie do |event|
   end
   event.message.react "🍪"
 end
+#Amiibo search
+$bot.command :amiibo, min_args: 1, max_args: 1 do |event, name|
+  begin
+    url = URI.escape("http://www.amiiboapi.com/api/amiibo/?name=#{name}")
+    parse = JSON.parse(RestClient.get(url))
+    img = parse["amiibo"][0]["image"]
+    eu = parse["amiibo"][0]["release"]["eu"]
+    au = parse["amiibo"][0]["release"]["au"]
+    jp = parse["amiibo"][0]["release"]["jp"]
+    na = parse["amiibo"][0]["release"]["na"]
+
+    event.channel.send_embed do |embed|
+      embed.title = parse["amiibo"][0]["character"]
+      embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: "#{img}")
+      embed.color = 0xffff00
+      embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
+      embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "\xE3\x80\x8EGeop\xE3\x80\x8F#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
+
+      embed.add_field(name: "__Amiibo Series__", value: parse["amiibo"][0]["amiiboSeries"])
+      embed.add_field(name: "__Game Series__", value: parse["amiibo"][0]["gameSeries"])
+      embed.add_field(name: "__Release Day__", value: "**AU:** #{au}\n**EU:** #{eu}\n**JP:** #{jp}\n**NA:** #{na}")
+    end
+   rescue
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.title = "Not Found"
+      end
+    end
+end
+#Generates Acronyms
+    $bot.command :acronym, min_args: 1, max_args: 1 do |event, acro|
+      begin
+        break unless acro.match(/^[a-zA-Z_\-+ ]*$/)
+        event.channel.send_embed do |embed|
+          embed.colour = 0xffff00
+          embed.title = "#{acro} Stands For :"
+          embed.description = HTTP.get("https://api.chew.pro/acronym/#{acro}").parse["phrase"]
+          embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://chew.pro/")
+        end
+      rescue
+        event.channel.send_embed do |embed|
+          embed.colour = 0xffff00
+          embed.title = "Only Latin Letters Please"
+        end
+      end
+    end
+#Responds with a joke
+    $bot.command :joke do |event|
+      url = URI.escape("https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke")
+      parse = JSON.parse(RestClient.get(url))
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.title = parse["setup"]
+        embed.description = parse["punchline"]
+        embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://github.com/15Dkatz/official_joke_api")
+      end
+    end
+#Responds with a norris joke
+    $bot.command :norris do |event|
+      url = URI.escape("http://api.icndb.com/jokes/random")
+      parse = JSON.parse(RestClient.get(url))
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.title = parse["value"]["joke"]
+      end
+    end
 #Tanki Stats
 $bot.command :tanki, min_args: 1, max_args: 1 do |event, nick|
   begin
