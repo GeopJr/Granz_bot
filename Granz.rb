@@ -20,7 +20,8 @@ puts "Connected"
 talk = Cleverbot.new("YOUR_API_USER", "YOUR_API_KEY")
 # Help Command
 $bot.command :help do |event|
-  event.channel.send_embed do |embed|
+  begin
+    event.channel.send_embed do |embed|
     embed.title = "You called for help , here I am !!!"
     embed.colour = 0xffff00
 
@@ -29,10 +30,17 @@ $bot.command :help do |event|
 
     embed.description = "[Command List !](https://granz.geopjr.de/commands.html)"
   end
+  rescue
+      event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 # Info
 $bot.command :info do |event|
-  event.channel.send_embed do |embed|
+  begin
+    event.channel.send_embed do |embed|
     embed.title = "Some Info"
     embed.colour = 0xffff00
 
@@ -47,30 +55,43 @@ $bot.command :info do |event|
     embed.add_field(name: "__MIT Licenced__", value: "https://github.com/GeopJr/Granz_bot")
     embed.add_field(name: "__Updates__", value: "At least 2 commands a week")
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 
 # Commands
 $bot.command :ping do |event|
-  event.channel.send_embed do |embed|
+  begin
+    event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = ":ping_pong: Pong! (#{Time.now - event.timestamp} sec.)"
   end
-end
-# Replaces tableflip with put the damn table sown
-$bot.message(containing: "(╯°□°）╯︵ ┻━┻") do |event|
-  event.channel.send_embed do |embed|
-    embed.colour = 0xffff00
-    embed.title = "┬─┬﻿ ノ( ゜-゜ノ)"
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 # Cleverbot
 $bot.message do |event|
+  begin
   if event.message.content.start_with?("<@#{$bot.profile.id}>") || event.message.content.start_with?("<@#{$bot.profile.id}>")
     event.channel.start_typing
     event.channel.send_embed do |embed|
       embed.colour = 0xffff00
       embed.title = talk.say(event.message.content.gsub("<@#{$bot.profile.id}>", "").gsub("<@!#{$bot.profile.id}>", ""))
       embed.description = "Replying to : #{event.user.mention}"
+    end
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
     end
   end
 end
@@ -111,49 +132,91 @@ end
 #Vigenere Encode and Decode
 $bot.command :vencode, min_args: 2 do |event, key, *text|
   message = text.join(" ")
+  begin
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = Vigenere.encode("#{key.upcase}", "#{message.upcase}")
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 
 $bot.command :vdecode, min_args: 2 do |event, key, *code|
   message = code.join(" ")
+  begin
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = Vigenere.decode("#{key.upcase}", "#{message.upcase}")
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 # Answers yes or no
 $bot.command :yesno, min_args: 1 do |event|
+  begin
   arr = ["Yes.", "No."]
-  event.channel.send_embed do |embed|
+    event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = arr.sample.to_s
+  end
+    rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 # Generates a let me google that for you link
 $bot.command :lmgtfy, min_args: 1 do |event, *args|
-  event.channel.send_embed do |embed|
+  begin
+    event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = format("<http://lmgtfy.com/?q=%s>", args.join("+"))
     embed.description = "Replying to : #{event.user.mention}"
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 # Generates a duckduckgo link
 $bot.command :ddg, min_args: 1 do |event, *args|
-  event.channel.send_embed do |embed|
+  begin
+    event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = format("<http://duckduckgo.com/%s?ia=web>", args.join("%20"))
     embed.description = "Replying to : #{event.user.mention}"
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 # Generates a google link
 $bot.command :google, min_args: 1 do |event, *args|
-  event.channel.send_embed do |embed|
+  begin
+    event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = format("<https://www.google.com/search?q=%s>", args.join("+"))
     embed.description = "Replying to : #{event.user.mention}"
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 # Responds with the avatar of the tagged user
@@ -183,10 +246,17 @@ $bot.command :uptime do |event|
   min = full_sec / 60
   sec = sec.floor
   min = min.floor
+  begin
   event.channel.send_embed do |embed|
     embed.title = "Uptime:"
     embed.description = format("%s minutes and %s seconds", min, sec)
     embed.colour = 0xffff00
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 # Kisses tagged user
@@ -231,16 +301,30 @@ $bot.command :hug, min_args: 1, max_args: 1 do |event, user|
 end
 # Notices you
 $bot.command :noticeme do |event|
+  begin
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.description = "#{event.user.mention}, I notice you :relaxed:"
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 # Blushes
 $bot.command :blush do |event|
+  begin
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://i.imgur.com/fIY6c7d.png")
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 # Shoots tagged user
@@ -265,24 +349,39 @@ $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
 end
 # Rates something
 $bot.command :rate, min_args: 1 do |event, *rating|
+  begin
   arr = %w[0 1 2 3 4 5 6 7 8 9 10]
   message = rating.join(" ")
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.description = "I give #{message} a #{arr.sample}/10 ~#{$bot_name}"
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 #Chooses between things
 $bot.command :choose, min_args: 2 do |event, *choices|
+  begin
   arr = choices
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = "Hmm, I pick :"
     embed.description = "#{arr.sample}"
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 #Tells you how gay something or someone is
 $bot.command :howgay, min_args: 1 do |event, *rating|
+  begin
   arr = (0..100).to_a
   message = rating.join(" ")
   event.channel.send_embed do |embed|
@@ -290,9 +389,16 @@ $bot.command :howgay, min_args: 1 do |event, *rating|
     embed.colour = 0xffff00
     embed.description = "#{message} is #{arr.sample}/100 homosexual :gay_pride_flag:"
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 #Tells you how cute something or someone is
 $bot.command :howcute, min_args: 1 do |event, *rating|
+  begin
   arr = (0..100).to_a
   message = rating.join(" ")
   event.channel.send_embed do |embed|
@@ -300,41 +406,82 @@ $bot.command :howcute, min_args: 1 do |event, *rating|
     embed.colour = 0xffff00
     embed.description = "#{message} is #{arr.sample}/100 cute :blush:"
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 # Reverses something
 $bot.command :reverse, min_args: 1 do |event, *args|
+  begin
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = args.join(" ").reverse.to_s
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 #Lowercase and Uppercase
 $bot.command :uppercase, min_args: 1 do |event, *args|
+  begin
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = "#{args.join(" ").upcase}"
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 
 $bot.command :lowercase, min_args: 1 do |event, *args|
+  begin
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = "#{args.join(" ").downcase}"
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 # Qrcode Generator
 $bot.command :qrcode, min_args: 1 do |event, *args|
+  begin
   event.channel.send_embed do |embed|
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://chart.googleapis.com/chart?cht=qr&chs=512x512&chl=#{args.join("+")}")
     embed.color = 0xffff00
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 # Algebra Visualizer
 $bot.command :algebra, min_args: 1 do |event, *args|
+  begin
   vis = args.join("").gsub("+", "%2B").gsub("=", "%3D").gsub("/", "%2F").gsub(",", "%2C").gsub(".", "%2E")
   event.channel.send_embed do |embed|
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: "https://chart.googleapis.com/chart?cht=tx&chl=#{vis}")
     embed.color = 0xffff00
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 # Responds with the id of the tagged user
@@ -360,46 +507,76 @@ end
 
 # Responds with a random shiba inu
 $bot.command :doge do |event|
+  begin
   event.channel.send_embed do |embed|
-    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "http://shibe.online/")
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("http://shibe.online/api/shibes?count=1").parse[0])
     embed.color = 0xffff00
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 
 #Responds with a random fox
 $bot.command :fox do |event|
+  begin
   event.channel.send_embed do |embed|
-    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://randomfox.ca/")
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://randomfox.ca/floof/").parse["image"])
     embed.color = 0xffff00
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 
 #Responds with a random dog
 $bot.command :dog do |event|
+  begin
   event.channel.send_embed do |embed|
-    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://random.dog/")
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://random.dog/woof.json").parse["url"])
     embed.color = 0xffff00
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 
 # Responds with a random cat
 $bot.command :cat do |event|
+  begin
   event.channel.send_embed do |embed|
-    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "http://shibe.online/")
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("http://shibe.online/api/cats?count=1").parse[0])
     embed.color = 0xffff00
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 
 # Responds with a random bird
 $bot.command :bird do |event|
-  embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "http://shibe.online/")
+  begin
   event.channel.send_embed do |embed|
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("http://shibe.online/api/birds?count=1").parse[0])
     embed.color = 0xffff00
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 
@@ -415,29 +592,48 @@ end
 
 #Responds with a random coffee image
 $bot.command :coffee do |event|
+  begin
   event.channel.send_embed do |embed|
     embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://coffee.alexflipnote.xyz/")
     embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://coffee.alexflipnote.xyz/random.json").parse["file"])
     embed.color = 0xffff00
   end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 #Responds with a random trump quote
 $bot.command :trump do |event|
+  begin
   event.channel.send_embed do |embed|
-    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://whatdoestrumpthink.com/")
     embed.title = HTTP.get("https://api.whatdoestrumpthink.com/api/v1/quotes/random").parse["message"]
     embed.colour = 0xffff00
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 # Responses with a cookie and a fortune
 $bot.command :cookie do |event|
+  begin
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = ":cookie:"
     embed.description = HTTP.get("http://www.yerkee.com/api/fortune").parse["fortune"]
-    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "http://www.yerkee.com/")
   end
   event.message.react "🍪"
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
+  end
 end
 #Amiibo search
 $bot.command :amiibo, min_args: 1, max_args: 1 do |event, name|
@@ -487,22 +683,35 @@ $bot.command :acronym, min_args: 1, max_args: 1 do |event, acro|
 end
 #Responds with a joke
 $bot.command :joke do |event|
+  begin
   url = URI.escape("https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke")
   parse = JSON.parse(RestClient.get(url))
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = parse["setup"]
     embed.description = parse["punchline"]
-    embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://github.com/15Dkatz/official_joke_api")
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 #Responds with a norris joke
 $bot.command :norris do |event|
+  begin
   url = URI.escape("http://api.icndb.com/jokes/random")
   parse = JSON.parse(RestClient.get(url))
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = parse["value"]["joke"]
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 #Tanki Stats
@@ -795,12 +1004,19 @@ $bot.command :mcstatus do |event|
 end
 #Stats about the bot
 $bot.command :stats do |event|
+  begin
   members = 0
   event.bot.servers.each { |x, y| members = members + y.member_count }
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
     embed.title = "Stats"
     embed.description = "Currently I'm on **#{event.bot.servers.size} servers** with a total user count of **#{members} users** in **#{event.bot.servers.collect { |x, y| y.channels.size }.inject(0, &:+)} channels**!"
+  end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Error"
+    end
   end
 end
 
