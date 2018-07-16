@@ -493,7 +493,7 @@ $bot.command :temperature, min_args: 3, max_args: 3 do |event, t, befo, afte|
     if bef == "celsius" || bef == "c"
       if aft == "celsius" || aft == "c"
         done = "INFINITY"
-      elsif aft == "kelvin" || aft.casecmp?("k")
+      elsif aft == "kelvin" || aft == "k"
         done = t.to_i + 273.15
       elsif aft == "fahrenheit" || aft == "f"
         prepare = t.to_i * 1.8
