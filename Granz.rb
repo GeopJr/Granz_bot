@@ -484,6 +484,50 @@ $bot.command :algebra, min_args: 1 do |event, *args|
     end
   end
 end
+# Converts temperature from F,K,C TO C,F,K
+$bot.command :temperature, min_args: 3, max_args: 3 do |event, t, bef, aft|
+  begin
+    break unless t.match(/^[0-9_\-+ ]*$/)
+    if bef.casecmp?("celsius") || bef.casecmp?("c")
+      if aft.casecmp?("celsius") || aft.casecmp?("c")
+        done = "INFINITY"
+      elsif aft.casecmp?("kelvin") || aft.casecmp?("k")
+        done = t.to_i + 273.15
+      elsif aft.casecmp?("fahrenheit") || aft.casecmp?("f")
+        prepare = t.to_i * 1.8
+        done = prepare + 32
+      end
+    elsif bef.casecmp?("fahrenheit") || bef.casecmp?("f")
+      if aft.casecmp?("celsius") || aft.casecmp?("c")
+        prepare = t.to_i - 32
+        done = prepare / 1.8
+      elsif aft.casecmp?("kelvin") || aft.casecmp?("k")
+        prepare = t.to_i + 459.67
+        done = prepare / 1.8
+      elsif aft.casecmp?("fahrenheit") || aft.casecmp?("f")
+        done = "INFINITY"
+      end
+    elsif bef.casecmp?("kelvin") || bef.casecmp?("k")
+      if aft.casecmp?("celsius") || aft.casecmp?("c")
+        done = t.to_i - 273.15
+      elsif aft.casecmp?("kelvin") || aft.casecmp?("k")
+        done = "INFINITY"
+      elsif aft.casecmp?("fahrenheit") || aft.casecmp?("f")
+        prepare = t.to_i * 1.8
+        done = prepare - 459.67
+      end
+    end
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "#{done}"
+    end
+  rescue
+    event.channel.send_embed do |embed|
+      embed.colour = 0xffff00
+      embed.title = "Only Numbers Please"
+    end
+  end
+end
 # Responds with the id of the tagged user
 $bot.command :id, min_args: 1, max_args: 1 do |event, user|
   user = user[2..-2]
