@@ -485,34 +485,36 @@ $bot.command :algebra, min_args: 1 do |event, *args|
   end
 end
 # Converts temperature from F,K,C TO C,F,K
-$bot.command :temperature, min_args: 3, max_args: 3 do |event, t, bef, aft|
+$bot.command :temperature, min_args: 3, max_args: 3 do |event, t, befo, afte|
+  bef = befo.downcase
+  aft = afte.downcase
   begin
     break unless t.match(/^[0-9_\-+ ]*$/)
-    if bef.casecmp("celsius") || bef.casecmp("c")
-      if aft.casecmp("celsius") || aft.casecmp("c")
+    if bef == "celsius" || bef == "c"
+      if aft == "celsius" || aft == "c"
         done = "INFINITY"
-      elsif aft.casecmp("kelvin") || aft.casecmp("k")
+      elsif aft == "kelvin" || aft.casecmp?("k")
         done = t.to_i + 273.15
-      elsif aft.casecmp("fahrenheit") || aft.casecmp("f")
+      elsif aft == "fahrenheit" || aft == "f"
         prepare = t.to_i * 1.8
         done = prepare + 32
       end
-    elsif bef.casecmp("fahrenheit") || bef.casecmp("f")
-      if aft.casecmp("celsius") || aft.casecmp("c")
+    elsif bef == "fahrenheit" || bef == "f"
+      if aft == "celsius" || aft == "c"
         prepare = t.to_i - 32
         done = prepare / 1.8
-      elsif aft.casecmp("kelvin") || aft.casecmp("k")
+      elsif aft == "kelvin" || aft == "k"
         prepare = t.to_i + 459.67
         done = prepare / 1.8
-      elsif aft.casecmp("fahrenheit") || aft.casecmp("f")
+      elsif aft == "fahrenheit" || aft == "f"
         done = "INFINITY"
       end
-    elsif bef.casecmp("kelvin") || bef.casecmp("k")
-      if aft.casecmp("celsius") || aft.casecmp("c")
+    elsif bef == "kelvin" || bef == "k"
+      if aft == "celsius" || aft == "c"
         done = t.to_i - 273.15
-      elsif aft.casecmp("kelvin") || aft.casecmp("k")
+      elsif aft == "kelvin" || aft == "k"
         done = "INFINITY"
-      elsif aft.casecmp("fahrenheit") || aft.casecmp("f")
+      elsif aft == "fahrenheit" || aft == "f"
         prepare = t.to_i * 1.8
         done = prepare - 459.67
       end
