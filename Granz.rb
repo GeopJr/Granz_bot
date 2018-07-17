@@ -24,10 +24,8 @@ $bot.command :help do |event|
     event.channel.send_embed do |embed|
     embed.title = "You called for help , here I am !!!"
     embed.colour = 0xffff00
-
     embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
     embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "\xE3\x80\x8EGeop\xE3\x80\x8F#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
-
     embed.description = "[Command List !](https://granz.geopjr.de/commands.html)"
   end
   rescue
@@ -43,10 +41,8 @@ $bot.command :info do |event|
     event.channel.send_embed do |embed|
     embed.title = "Some Info"
     embed.colour = 0xffff00
-
     embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
     embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "\xE3\x80\x8EGeop\xE3\x80\x8F#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
-
     embed.add_field(name: "__Name & Avatar__", value: "Granz is a character made by Mentaiko")
     embed.add_field(name: "__Version__", value: $version.to_s)
     embed.add_field(name: "__Written in__", value: "Ruby using discordrb")
@@ -550,7 +546,6 @@ $bot.command :id, min_args: 1, max_args: 1 do |event, user|
     end
   end
 end
-
 # Responds with a random shiba inu
 $bot.command :doge do |event|
   begin
@@ -565,7 +560,6 @@ $bot.command :doge do |event|
     end
   end
 end
-
 #Responds with a random fox
 $bot.command :fox do |event|
   begin
@@ -580,7 +574,6 @@ $bot.command :fox do |event|
     end
   end
 end
-
 #Responds with a random dog
 $bot.command :dog do |event|
   begin
@@ -595,7 +588,6 @@ $bot.command :dog do |event|
     end
   end
 end
-
 # Responds with a random cat
 $bot.command :cat do |event|
   begin
@@ -610,7 +602,6 @@ $bot.command :cat do |event|
     end
   end
 end
-
 # Responds with a random bird
 $bot.command :bird do |event|
   begin
@@ -625,7 +616,6 @@ $bot.command :bird do |event|
     end
   end
 end
-
 # #Responds with a bara image
 # $bot.command :bara do |event|
 # next event.respond "I'm sorry. I can't do that because this is a SFW channel." unless event.channel.nsfw
@@ -635,7 +625,6 @@ end
 #   embed.color = 0xffff00
 #   end
 # end
-
 #Responds with a random coffee image
 $bot.command :coffee do |event|
   begin
@@ -691,14 +680,12 @@ $bot.command :amiibo, min_args: 1, max_args: 1 do |event, name|
     au = parse["amiibo"][0]["release"]["au"]
     jp = parse["amiibo"][0]["release"]["jp"]
     na = parse["amiibo"][0]["release"]["na"]
-
     event.channel.send_embed do |embed|
       embed.title = parse["amiibo"][0]["character"]
       embed.thumbnail = Discordrb::Webhooks::EmbedThumbnail.new(url: "#{img}")
       embed.color = 0xffff00
       embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
       embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "\xE3\x80\x8EGeop\xE3\x80\x8F#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
-
       embed.add_field(name: "__Amiibo Series__", value: parse["amiibo"][0]["amiiboSeries"])
       embed.add_field(name: "__Game Series__", value: parse["amiibo"][0]["gameSeries"])
       embed.add_field(name: "__Release Day__", value: "**AU:** #{au}\n**EU:** #{eu}\n**JP:** #{jp}\n**NA:** #{na}")
