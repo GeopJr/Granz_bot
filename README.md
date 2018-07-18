@@ -24,7 +24,7 @@
 # About it
 This started as a project to understand ruby while learning it
 # Invite it
-[CLICK HERE](https://discordapp.com/oauth2/authorize?client_id=443053627419000833&scope=bot&permissions=103894080&redirect_uri=https://granz.geopjr.de/thanks.html&response_type=code)
+[CLICK HERE](https://discordapp.com/oauth2/authorize?client_id=443053627419000833&scope=bot&permissions=103894080&redirect_uri=https://granz.geopjr.xyz/thanks.html&response_type=code)
 # Commands
 - Cleverbot
 - Fun Commands
@@ -33,7 +33,7 @@ This started as a project to understand ruby while learning it
 - Gaming Commands
 - Encryption Commands
 
-- Full list [HERE](https://granz.geopjr.de/commands.html)
+- Full list [HERE](https://granz.geopjr.xyz/commands.html)
 # How to set it up
 - Install ruby on your OS
 - Install Bundler
