@@ -26,7 +26,7 @@ $bot.command :help do |event|
     embed.colour = 0xffff00
     embed.author = Discordrb::Webhooks::EmbedAuthor.new(name: "#{$bot_name}#{$bot_tag}", icon_url: "https://cdn.discordapp.com/avatars/443053627419000833/0da891379e4d9d7af31b27ec67c49a3b.png")
     embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "\xE3\x80\x8EGeop\xE3\x80\x8F#4066", icon_url: "https://cdn.discordapp.com/avatars/216156825978929152/4726ea8789285323ca03e995b9a059bf.png")
-    embed.description = "[Command List !](https://granz.geopjr.de/commands.html)"
+    embed.description = "[Command List !](https://granz.geopjr.xyz/commands.html)"
   end
   rescue
       event.channel.send_embed do |embed|
@@ -620,7 +620,7 @@ end
 # $bot.command :bara do |event|
 # next event.respond "I'm sorry. I can't do that because this is a SFW channel." unless event.channel.nsfw
 #   event.channel.send_embed do |embed|
-#   embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://barapi.geopjr.de/")
+#   embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://barapi.geopjr.xyz/")
 #   embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get('https://barapi.000webhostapp.com/api/random.php').parse[0])
 #   embed.color = 0xffff00
 #   end
