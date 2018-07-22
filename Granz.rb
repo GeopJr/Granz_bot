@@ -350,7 +350,7 @@ $bot.command :rate, min_args: 1 do |event, *rating|
   message = rating.join(" ")
   event.channel.send_embed do |embed|
     embed.colour = 0xffff00
-    embed.description = "I give #{message} a #{arr.sample}/10 ~#{$bot_name}"
+    embed.description = "I give **#{message}** a **#{arr.sample}/10** ~#{$bot_name}"
   end
   rescue
     event.channel.send_embed do |embed|
@@ -383,7 +383,7 @@ $bot.command :howgay, min_args: 1 do |event, *rating|
   event.channel.send_embed do |embed|
     embed.title = "How much of a homosexual are you ?"
     embed.colour = 0xffff00
-    embed.description = "#{message} is #{arr.sample}/100 homosexual :gay_pride_flag:"
+    embed.description = "**#{message}** is **#{arr.sample}/100** homosexual :gay_pride_flag:"
   end
   rescue
     event.channel.send_embed do |embed|
@@ -400,7 +400,7 @@ $bot.command :howcute, min_args: 1 do |event, *rating|
   event.channel.send_embed do |embed|
     embed.title = "How cute are you ?"
     embed.colour = 0xffff00
-    embed.description = "#{message} is #{arr.sample}/100 cute :blush:"
+    embed.description = "**#{message}** is **#{arr.sample}/100** cute :blush:"
   end
   rescue
     event.channel.send_embed do |embed|
