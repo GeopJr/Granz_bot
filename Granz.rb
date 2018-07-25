@@ -1097,7 +1097,7 @@ $bot.command :eval do |event, *code|
     event.channel.send_embed do |embed|
       embed.colour = 0xffff00
       embed.title = "Success :white_check_mark:"
-      embed.description = ":inbox_tray: Input:\n```#{code.join(" ")}```\n:outbox_tray: Output:\n```#{input}```"
+      embed.description = ":inbox_tray: Input:\n```#{code.join(" ")}```\n:outbox_tray: Output:\n```⠀#{input}```"
     end
   rescue StandardError => e
     event.channel.send_embed do |embed|
