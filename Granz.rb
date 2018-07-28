@@ -262,17 +262,31 @@ $bot.command :kiss, min_args: 1, max_args: 1 do |event, user|
   user = user[2..-2]
   begin
     mentioned_user = $bot.user(user)
-    event.channel.send_embed do |embed|
-      embed.colour = 0xffff00
-      embed.description = "#{mentioned_user.mention}, #{event.user.mention} kissed you :kiss:"
-    end
-  rescue StandardError
-    begin
-      user = user[1..-1]
-      mentioned_user = $bot.user(user)
+    if mentioned_user.mention == event.user.mention
       event.channel.send_embed do |embed|
         embed.colour = 0xffff00
-        embed.description = "#{mentioned_user.mention}, #{event.user.mention} kissed you :kiss:"
+        embed.description = "#{event.user.mention} Sorry , you can't kiss yourself :cry:. But I can kiss you if you want :blush:"
+      end
+    else
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{mentioned_user.mention}, got kissed by #{event.user.mention} :kiss:"
+        embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://nekos.life/api/kiss").parse["url"])
+      end
+    end
+  rescue StandardError
+    user = user[1..-1]
+    mentioned_user = $bot.user(user)
+    if mentioned_user.mention == event.user.mention
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{event.user.mention} Sorry , you can't kiss yourself :cry:. But I can kiss you if you want :blush:"
+      end
+    else
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{mentioned_user.mention}, got kissed by #{event.user.mention} :kiss:"
+        embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://nekos.life/api/kiss").parse["url"])
       end
     end
   end
@@ -282,17 +296,65 @@ $bot.command :hug, min_args: 1, max_args: 1 do |event, user|
   user = user[2..-2]
   begin
     mentioned_user = $bot.user(user)
-    event.channel.send_embed do |embed|
-      embed.colour = 0xffff00
-      embed.description = "#{mentioned_user.mention}, #{event.user.mention} hugged you :hugging:"
-    end
-  rescue StandardError
-    begin
-      user = user[1..-1]
-      mentioned_user = $bot.user(user)
+    if mentioned_user.mention == event.user.mention
       event.channel.send_embed do |embed|
         embed.colour = 0xffff00
-        embed.description = "#{mentioned_user.mention}, #{event.user.mention} hugged you :hugging:"
+        embed.description = "#{event.user.mention} Sorry , you can't hug yourself :cry:. But I can hug you if you want :blush:"
+      end
+    else
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{mentioned_user.mention}, got hugged by #{event.user.mention} :hugging:"
+        embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://nekos.life/api/hug").parse["url"])
+      end
+    end
+  rescue StandardError
+    user = user[1..-1]
+    mentioned_user = $bot.user(user)
+    if mentioned_user.mention == event.user.mention
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{event.user.mention} Sorry , you can't hug yourself :cry:. But I can hug you if you want :blush:"
+      end
+    else
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{mentioned_user.mention}, got hugged by #{event.user.mention} :hugging:"
+        embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://nekos.life/api/hug").parse["url"])
+      end
+    end
+  end
+end
+# Pats tagged user
+$bot.command :pat, min_args: 1, max_args: 1 do |event, user|
+  user = user[2..-2]
+  begin
+    mentioned_user = $bot.user(user)
+    if mentioned_user.mention == event.user.mention
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{event.user.mention} Sorry , you can't pat yourself :cry:. But I can pat you if you want :blush:"
+      end
+    else
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{mentioned_user.mention}, you received a pat by #{event.user.mention} :blush:"
+        embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://nekos.life/api/pat").parse["url"])
+      end
+    end
+  rescue StandardError
+    user = user[1..-1]
+    mentioned_user = $bot.user(user)
+    if mentioned_user.mention == event.user.mention
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{event.user.mention} Sorry , you can't pat yourself :cry:. But I can pat you if you want :blush:"
+      end
+    else
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{mentioned_user.mention}, you received a pat by #{event.user.mention} :blush:"
+        embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://nekos.life/api/pat").parse["url"])
       end
     end
   end
@@ -330,17 +392,29 @@ $bot.command :shoot, min_args: 1, max_args: 1 do |event, user|
   user = user[2..-2]
   begin
     mentioned_user = $bot.user(user)
-    event.channel.send_embed do |embed|
-      embed.colour = 0xffff00
-      embed.description = "#{mentioned_user.mention}, #{event.user.mention} shot you :gun:"
-    end
-  rescue StandardError
-    begin
-      user = user[1..-1]
-      mentioned_user = $bot.user(user)
+    if mentioned_user.mention == event.user.mention
       event.channel.send_embed do |embed|
         embed.colour = 0xffff00
-        embed.description = "#{mentioned_user.mention}, #{event.user.mention} shot you :gun:"
+        embed.description = "#{event.user.mention} If you are feeling suicidal, talk to someone or call your country's suicide prevention hotline"
+      end
+    else
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{mentioned_user.mention}, got shot by #{event.user.mention} :gun:"
+      end
+    end
+  rescue StandardError
+    user = user[1..-1]
+    mentioned_user = $bot.user(user)
+    if mentioned_user.mention == event.user.mention
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{event.user.mention} If you are feeling suicidal, talk to someone or call your country's suicide prevention hotline"
+      end
+    else
+      event.channel.send_embed do |embed|
+        embed.colour = 0xffff00
+        embed.description = "#{mentioned_user.mention}, got shot by #{event.user.mention} :gun:"
       end
     end
   end
