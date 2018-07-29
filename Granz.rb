@@ -4,6 +4,8 @@ require "json"
 require "cleverbot"
 require "http"
 require "vigenere"
+# Just to remove a startup error from logging
+ENV["DISCORDRB_NONACL"] = "libsodium is useless here"
 # Change these to whatever you want
 $prefix = "Your desired prefix"
 $version = "Your desired version"
