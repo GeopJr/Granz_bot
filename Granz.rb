@@ -733,7 +733,7 @@ $bot.command :bara do |event|
   begin
     break if event.user.id == 446364321681768459
     event.channel.send_embed do |embed|
-      embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://barapi.geopjr.de/")
+      embed.footer = Discordrb::Webhooks::EmbedFooter.new(text: "https://barapi.geopjr.xyz/")
       embed.image = Discordrb::Webhooks::EmbedImage.new(url: HTTP.get("https://barapi.000webhostapp.com/api/random.php").parse[0])
       embed.color = 0xffff00
     end
