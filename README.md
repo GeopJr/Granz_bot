@@ -39,9 +39,9 @@ This started as a project to understand ruby while learning it
 - Install Gems
 
 	`$ bundle install`
-- Replace Important values with yours by editing config.yaml
-	config.yaml is just an example
-	don't leave anything without a value
+- Replace Important values with yours by editing config.yaml 
+#### config.yaml is just an example
+#### don't leave anything without a value
 ```
 $token = Your Bot's token
 $prefix = Your desired prefix
