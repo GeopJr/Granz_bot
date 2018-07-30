@@ -3,4 +3,5 @@ source 'https://rubygems.org'
   gem 'json'
   gem 'cleverbot_io'
   gem 'http'
+  gem 'rest-client'
   gem "vigenere"

@@ -1,0 +1,35 @@
+# Your bot's token
+
+$token: ThIs.IS.a.fAkE.TOkeN
+
+# Your bot's prefix
+
+$prefix: --
+
+# Your bot's client id
+
+$client_id: 443495335650656286
+
+# Your bot's name
+
+$bot_name: Granz
+
+# Your bot's tag
+
+$bot_tag: 8561
+
+# Your bot's version
+
+$version: 9.5
+
+# Your id
+
+$my_id: 216156825978929152
+
+# Your Cleverbot.io API User
+
+$talk_user: your_cleverbotio_api_user
+
+# Your Cleverbot.io API Key
+
+$talk_key: your_cleverbotio_api_key
