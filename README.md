@@ -3,9 +3,6 @@
   <p>
     <img src="https://i.imgur.com/90xR5vB.png"/></a>
   </p>
-  <br />
-  <p>
-  <br />
   <p>
     <img src="https://i.imgur.com/kG2PYbz.jpg" alt="Granz_avatar"/></a>
   </p>
@@ -42,28 +39,20 @@ This started as a project to understand ruby while learning it
 - Install Gems
 
 	`$ bundle install`
-- Customize it
-
+- Replace Important values with yours by editing config.yaml
+	config.yaml is just an example
+	don't leave anything without a value
 ```
-$prefix = "Your desired prefix"
-$version = "Your desired version"
-$bot_name = "Your bot's Name"
-$bot_tag = "Your bot's tag
-```
-- Replace Important values with yours
-```
-$token = "Your Bot's token"
-$client_id = "Your Bot's ID"
+$token = Your Bot's token
+$prefix = Your desired prefix
+$client_id = Your Bot's ID
+...
 ```
 - Don't forget to generate your https://cleverbot.io/keys keys
 	
-    `talk = Cleverbot.new('YOUR_API_USER', 'YOUR_API_KEY')`
 - Run it
 
-	`$ bundle exec ruby Granz.rb`
-# Eval + Restart
-They are both commented out, uncomment them if you want them and replace
-`YOUR_ID` with your id
+	`$ bundle exec ruby run.rb`
 # License
  The Bot is using MIT License
 # Copyrights
