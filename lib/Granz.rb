@@ -32,5 +32,6 @@ module Granz
   # Logs a message to your terminal
   puts "Connected"
   # No need to explain
-  $bot.run
+  $bot.run :async
 end
+$bot.sync
