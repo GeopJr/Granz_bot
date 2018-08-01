@@ -178,6 +178,13 @@ module Granz::DiscordCommands
           embed.add_field(name: "__Experience Rating Place | Value__", value: "#{explac} | #{exvalu}")
           embed.add_field(name: "__Gold Box Rating Place | Value__", value: "#{gplac} | #{gvalu}")
           embed.add_field(name: "__Crystals Rating Place | Value__", value: "#{cryplac} | #{cryvalu}")
+          embed.add_field(name: "__Mines Used__", value: parse["response"]["suppliesUsage"][0]["usages"], inline: true)
+          embed.add_field(name: "__Repair Kits Used__", value: parse["response"]["suppliesUsage"][1]["usages"], inline: true)
+          embed.add_field(name: "__Gold Boxes Used__", value: parse["response"]["suppliesUsage"][2]["usages"], inline: true)
+          embed.add_field(name: "__Double Armors Used__", value: parse["response"]["suppliesUsage"][3]["usages"], inline: true)
+          embed.add_field(name: "__Speed Boosts__", value: parse["response"]["suppliesUsage"][4]["usages"], inline: true)
+          embed.add_field(name: "__Double Damage Used__", value: parse["response"]["suppliesUsage"][5]["usages"], inline: true)
+          embed.add_field(name: "__Batteries Used__", value: parse["response"]["suppliesUsage"][6]["usages"], inline: true)
         end
       rescue
         event.channel.send_embed do |embed|
