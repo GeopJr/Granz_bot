@@ -155,6 +155,14 @@ module Granz::DiscordCommands
         else
           cryvalu = parse["response"]["rating"]["crystals"]["value"].to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse
         end
+        
+        mines = parse["response"]["suppliesUsage"][0]["usages"]
+        repair = parse["response"]["suppliesUsage"][1]["usages"]
+        golbo = parse["response"]["suppliesUsage"][2]["usages"]
+        darm = parse["response"]["suppliesUsage"][3]["usages"]
+        spebo = parse["response"]["suppliesUsage"][4]["usages"]
+        ddu = parse["response"]["suppliesUsage"][5]["usages"]
+        bu = parse["response"]["suppliesUsage"][6]["usages"]
 
         event.channel.send_embed do |embed|
           embed.title = "Stats of #{nick}"
@@ -178,13 +186,13 @@ module Granz::DiscordCommands
           embed.add_field(name: "__Experience Rating Place | Value__", value: "#{explac} | #{exvalu}")
           embed.add_field(name: "__Gold Box Rating Place | Value__", value: "#{gplac} | #{gvalu}")
           embed.add_field(name: "__Crystals Rating Place | Value__", value: "#{cryplac} | #{cryvalu}")
-          embed.add_field(name: "__Mines Used__", value: parse["response"]["suppliesUsage"][0]["usages"], inline: true)
-          embed.add_field(name: "__Repair Kits Used__", value: parse["response"]["suppliesUsage"][1]["usages"], inline: true)
-          embed.add_field(name: "__Gold Boxes Used__", value: parse["response"]["suppliesUsage"][2]["usages"], inline: true)
-          embed.add_field(name: "__Double Armors Used__", value: parse["response"]["suppliesUsage"][3]["usages"], inline: true)
-          embed.add_field(name: "__Speed Boosts__", value: parse["response"]["suppliesUsage"][4]["usages"], inline: true)
-          embed.add_field(name: "__Double Damage Used__", value: parse["response"]["suppliesUsage"][5]["usages"], inline: true)
-          embed.add_field(name: "__Batteries Used__", value: parse["response"]["suppliesUsage"][6]["usages"], inline: true)
+          embed.add_field(name: "__Mines Used__", value: "#{mines.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}", inline: true)
+          embed.add_field(name: "__Repair Kits Used__", value: "#{repair.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}", inline: true)
+          embed.add_field(name: "__Gold Boxes Used__", value: "#{golbo.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}", inline: true)
+          embed.add_field(name: "__Double Armors Used__", value: "#{darm.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}", inline: true)
+          embed.add_field(name: "__Speed Boosts__", value: "#{spebo.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}", inline: true)
+          embed.add_field(name: "__Double Damage Used__", value: "#{ddu.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}", inline: true)
+          embed.add_field(name: "__Batteries Used__", value: "#{bu.to_s.chars.to_a.reverse.each_slice(3).map(&:join).join(",").reverse}", inline: true)
         end
       rescue
         event.channel.send_embed do |embed|
