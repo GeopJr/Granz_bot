@@ -18,6 +18,8 @@
 # Granz
 #### A Discord Bot written in ruby using discordrb
 
+# THIS IS NOW BEING MAINTAINED IN CRYSTAL AT GEOPJR/GRANZ-CR
+
 # About it
 This started as a project to understand ruby while learning it
 # Invite it
